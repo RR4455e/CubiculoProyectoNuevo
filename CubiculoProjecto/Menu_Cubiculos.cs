@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,9 +69,25 @@ namespace CubiculoProjecto
                 }
                 else
                 {
-                    // Si el cubículo está libre, abrir Pedir_Cubiculo
-                    Pedir_Cubiculo pedirCubiculoForm = new Pedir_Cubiculo(numeroCubiculo, this);
-                    pedirCubiculoForm.Show();
+                    // Verificar si el cubículo está ocupado por un usuario externo
+                    RegistroCubiculoExternos registroExterno = conexion.ObtenerRegistroActivoPorCubiculoExterno(numeroCubiculo);
+
+                    if (registroExterno != null)
+                    {
+                        // Registrar la salida del usuario externo y liberar el cubículo
+                        conexion.ActualizarHoraSalidaExterno(int.Parse(registroExterno.num_prestamo));
+
+                        // Actualizar la interfaz liberando el cubículo
+                        LiberarCubiculo(numeroCubiculo);
+
+                        MessageBox.Show("Salida del usuario externo registrada y cubículo liberado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Si el cubículo está libre, abrir Pedir_Cubiculo
+                        Pedir_Cubiculo pedirCubiculoForm = new Pedir_Cubiculo(numeroCubiculo, this);
+                        pedirCubiculoForm.Show();
+                    }
                 }
             }
         }
@@ -171,6 +188,7 @@ namespace CubiculoProjecto
                     conexion.ActualizarHoraSalidaPersonal(int.Parse(registroDocente.num_prestamo));
                 }
             }
+            
 
             // Actualizar UI
             Button boton = listaBotones[numeroCubiculo - 1];

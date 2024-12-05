@@ -46,17 +46,30 @@
             this.txtNumControl = new System.Windows.Forms.TextBox();
             this.btnRegistrarAlumno = new System.Windows.Forms.Button();
             this.tabPersonal = new System.Windows.Forms.TabPage();
-            this.tabExternos = new System.Windows.Forms.TabPage();
-            this.txtNoTarjeta = new System.Windows.Forms.TextBox();
-            this.lblNombreDocente = new System.Windows.Forms.Label();
-            this.lblApellidosDocente = new System.Windows.Forms.Label();
-            this.lblAreaDocente = new System.Windows.Forms.Label();
-            this.btnRegistrarDocente = new System.Windows.Forms.Button();
-            this.cmbNumPersonasDocente = new System.Windows.Forms.ComboBox();
             this.lblNumeroCubiculoDocente = new System.Windows.Forms.Label();
+            this.cmbNumPersonasDocente = new System.Windows.Forms.ComboBox();
+            this.btnRegistrarDocente = new System.Windows.Forms.Button();
+            this.lblAreaDocente = new System.Windows.Forms.Label();
+            this.lblApellidosDocente = new System.Windows.Forms.Label();
+            this.lblNombreDocente = new System.Windows.Forms.Label();
+            this.txtNoTarjeta = new System.Windows.Forms.TextBox();
+            this.tabExternos = new System.Windows.Forms.TabPage();
+            this.txtNombreExterno = new System.Windows.Forms.TextBox();
+            this.txtApellidoMatExt = new System.Windows.Forms.TextBox();
+            this.txtApellidoPatExt = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblNumeroCubiculoExterno = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbNumPersonasExterno = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnRegistrarExterno = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabAlumnos.SuspendLayout();
             this.tabPersonal.SuspendLayout();
+            this.tabExternos.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -137,6 +150,7 @@
             this.lblidCarreraAlumno.Name = "lblidCarreraAlumno";
             this.lblidCarreraAlumno.Size = new System.Drawing.Size(0, 13);
             this.lblidCarreraAlumno.TabIndex = 73;
+            this.lblidCarreraAlumno.Visible = false;
             // 
             // lblSemestreAlumno
             // 
@@ -191,9 +205,6 @@
             // 
             this.cmbNumPersonasAlumno.FormattingEnabled = true;
             this.cmbNumPersonasAlumno.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
             "4",
             "5",
             "6",
@@ -231,6 +242,7 @@
             // 
             // tabPersonal
             // 
+            this.tabPersonal.Controls.Add(this.label5);
             this.tabPersonal.Controls.Add(this.lblNumeroCubiculoDocente);
             this.tabPersonal.Controls.Add(this.cmbNumPersonasDocente);
             this.tabPersonal.Controls.Add(this.btnRegistrarDocente);
@@ -246,46 +258,27 @@
             this.tabPersonal.Text = "Personal";
             this.tabPersonal.UseVisualStyleBackColor = true;
             // 
-            // tabExternos
+            // lblNumeroCubiculoDocente
             // 
-            this.tabExternos.Location = new System.Drawing.Point(4, 22);
-            this.tabExternos.Name = "tabExternos";
-            this.tabExternos.Size = new System.Drawing.Size(391, 375);
-            this.tabExternos.TabIndex = 2;
-            this.tabExternos.Text = "Externos";
-            this.tabExternos.UseVisualStyleBackColor = true;
+            this.lblNumeroCubiculoDocente.AutoSize = true;
+            this.lblNumeroCubiculoDocente.Location = new System.Drawing.Point(145, 24);
+            this.lblNumeroCubiculoDocente.Name = "lblNumeroCubiculoDocente";
+            this.lblNumeroCubiculoDocente.Size = new System.Drawing.Size(0, 13);
+            this.lblNumeroCubiculoDocente.TabIndex = 6;
             // 
-            // txtNoTarjeta
+            // cmbNumPersonasDocente
             // 
-            this.txtNoTarjeta.Location = new System.Drawing.Point(105, 60);
-            this.txtNoTarjeta.Name = "txtNoTarjeta";
-            this.txtNoTarjeta.Size = new System.Drawing.Size(100, 20);
-            this.txtNoTarjeta.TabIndex = 0;
-            this.txtNoTarjeta.TextChanged += new System.EventHandler(this.txtNoTarjeta_TextChanged);
-            // 
-            // lblNombreDocente
-            // 
-            this.lblNombreDocente.AutoSize = true;
-            this.lblNombreDocente.Location = new System.Drawing.Point(105, 112);
-            this.lblNombreDocente.Name = "lblNombreDocente";
-            this.lblNombreDocente.Size = new System.Drawing.Size(0, 13);
-            this.lblNombreDocente.TabIndex = 1;
-            // 
-            // lblApellidosDocente
-            // 
-            this.lblApellidosDocente.AutoSize = true;
-            this.lblApellidosDocente.Location = new System.Drawing.Point(105, 129);
-            this.lblApellidosDocente.Name = "lblApellidosDocente";
-            this.lblApellidosDocente.Size = new System.Drawing.Size(0, 13);
-            this.lblApellidosDocente.TabIndex = 2;
-            // 
-            // lblAreaDocente
-            // 
-            this.lblAreaDocente.AutoSize = true;
-            this.lblAreaDocente.Location = new System.Drawing.Point(105, 146);
-            this.lblAreaDocente.Name = "lblAreaDocente";
-            this.lblAreaDocente.Size = new System.Drawing.Size(0, 13);
-            this.lblAreaDocente.TabIndex = 3;
+            this.cmbNumPersonasDocente.FormattingEnabled = true;
+            this.cmbNumPersonasDocente.Items.AddRange(new object[] {
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.cmbNumPersonasDocente.Location = new System.Drawing.Point(108, 203);
+            this.cmbNumPersonasDocente.Name = "cmbNumPersonasDocente";
+            this.cmbNumPersonasDocente.Size = new System.Drawing.Size(121, 21);
+            this.cmbNumPersonasDocente.TabIndex = 5;
             // 
             // btnRegistrarDocente
             // 
@@ -297,30 +290,164 @@
             this.btnRegistrarDocente.UseVisualStyleBackColor = true;
             this.btnRegistrarDocente.Click += new System.EventHandler(this.btnRegistrarDocente_Click);
             // 
-            // cmbNumPersonasDocente
+            // lblAreaDocente
             // 
-            this.cmbNumPersonasDocente.FormattingEnabled = true;
-            this.cmbNumPersonasDocente.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
+            this.lblAreaDocente.AutoSize = true;
+            this.lblAreaDocente.Location = new System.Drawing.Point(105, 146);
+            this.lblAreaDocente.Name = "lblAreaDocente";
+            this.lblAreaDocente.Size = new System.Drawing.Size(0, 13);
+            this.lblAreaDocente.TabIndex = 3;
+            // 
+            // lblApellidosDocente
+            // 
+            this.lblApellidosDocente.AutoSize = true;
+            this.lblApellidosDocente.Location = new System.Drawing.Point(105, 129);
+            this.lblApellidosDocente.Name = "lblApellidosDocente";
+            this.lblApellidosDocente.Size = new System.Drawing.Size(0, 13);
+            this.lblApellidosDocente.TabIndex = 2;
+            // 
+            // lblNombreDocente
+            // 
+            this.lblNombreDocente.AutoSize = true;
+            this.lblNombreDocente.Location = new System.Drawing.Point(105, 112);
+            this.lblNombreDocente.Name = "lblNombreDocente";
+            this.lblNombreDocente.Size = new System.Drawing.Size(0, 13);
+            this.lblNombreDocente.TabIndex = 1;
+            // 
+            // txtNoTarjeta
+            // 
+            this.txtNoTarjeta.Location = new System.Drawing.Point(105, 60);
+            this.txtNoTarjeta.Name = "txtNoTarjeta";
+            this.txtNoTarjeta.Size = new System.Drawing.Size(100, 20);
+            this.txtNoTarjeta.TabIndex = 0;
+            this.txtNoTarjeta.TextChanged += new System.EventHandler(this.txtNoTarjeta_TextChanged);
+            // 
+            // tabExternos
+            // 
+            this.tabExternos.Controls.Add(this.label8);
+            this.tabExternos.Controls.Add(this.btnRegistrarExterno);
+            this.tabExternos.Controls.Add(this.label7);
+            this.tabExternos.Controls.Add(this.label6);
+            this.tabExternos.Controls.Add(this.label4);
+            this.tabExternos.Controls.Add(this.cmbNumPersonasExterno);
+            this.tabExternos.Controls.Add(this.lblNumeroCubiculoExterno);
+            this.tabExternos.Controls.Add(this.label3);
+            this.tabExternos.Controls.Add(this.txtApellidoPatExt);
+            this.tabExternos.Controls.Add(this.txtApellidoMatExt);
+            this.tabExternos.Controls.Add(this.txtNombreExterno);
+            this.tabExternos.Location = new System.Drawing.Point(4, 22);
+            this.tabExternos.Name = "tabExternos";
+            this.tabExternos.Size = new System.Drawing.Size(391, 375);
+            this.tabExternos.TabIndex = 2;
+            this.tabExternos.Text = "Externos";
+            this.tabExternos.UseVisualStyleBackColor = true;
+            // 
+            // txtNombreExterno
+            // 
+            this.txtNombreExterno.Location = new System.Drawing.Point(133, 104);
+            this.txtNombreExterno.Name = "txtNombreExterno";
+            this.txtNombreExterno.Size = new System.Drawing.Size(150, 20);
+            this.txtNombreExterno.TabIndex = 0;
+            // 
+            // txtApellidoMatExt
+            // 
+            this.txtApellidoMatExt.Location = new System.Drawing.Point(133, 180);
+            this.txtApellidoMatExt.Name = "txtApellidoMatExt";
+            this.txtApellidoMatExt.Size = new System.Drawing.Size(150, 20);
+            this.txtApellidoMatExt.TabIndex = 1;
+            // 
+            // txtApellidoPatExt
+            // 
+            this.txtApellidoPatExt.Location = new System.Drawing.Point(133, 139);
+            this.txtApellidoPatExt.Name = "txtApellidoPatExt";
+            this.txtApellidoPatExt.Size = new System.Drawing.Size(150, 20);
+            this.txtApellidoPatExt.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Cubiculo";
+            // 
+            // lblNumeroCubiculoExterno
+            // 
+            this.lblNumeroCubiculoExterno.AutoSize = true;
+            this.lblNumeroCubiculoExterno.Location = new System.Drawing.Point(65, 15);
+            this.lblNumeroCubiculoExterno.Name = "lblNumeroCubiculoExterno";
+            this.lblNumeroCubiculoExterno.Size = new System.Drawing.Size(0, 13);
+            this.lblNumeroCubiculoExterno.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(91, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Cubiculo";
+            // 
+            // cmbNumPersonasExterno
+            // 
+            this.cmbNumPersonasExterno.FormattingEnabled = true;
+            this.cmbNumPersonasExterno.Items.AddRange(new object[] {
             "4",
             "5",
             "6",
             "7",
             "8"});
-            this.cmbNumPersonasDocente.Location = new System.Drawing.Point(108, 203);
-            this.cmbNumPersonasDocente.Name = "cmbNumPersonasDocente";
-            this.cmbNumPersonasDocente.Size = new System.Drawing.Size(121, 21);
-            this.cmbNumPersonasDocente.TabIndex = 5;
+            this.cmbNumPersonasExterno.Location = new System.Drawing.Point(133, 219);
+            this.cmbNumPersonasExterno.Name = "cmbNumPersonasExterno";
+            this.cmbNumPersonasExterno.Size = new System.Drawing.Size(150, 21);
+            this.cmbNumPersonasExterno.TabIndex = 5;
             // 
-            // lblNumeroCubiculoDocente
+            // label4
             // 
-            this.lblNumeroCubiculoDocente.AutoSize = true;
-            this.lblNumeroCubiculoDocente.Location = new System.Drawing.Point(145, 24);
-            this.lblNumeroCubiculoDocente.Name = "lblNumeroCubiculoDocente";
-            this.lblNumeroCubiculoDocente.Size = new System.Drawing.Size(0, 13);
-            this.lblNumeroCubiculoDocente.TabIndex = 6;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(65, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Nombre";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(43, 146);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Apellido Paterno";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(43, 183);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Apellido Materno";
+            // 
+            // btnRegistrarExterno
+            // 
+            this.btnRegistrarExterno.Location = new System.Drawing.Point(133, 287);
+            this.btnRegistrarExterno.Name = "btnRegistrarExterno";
+            this.btnRegistrarExterno.Size = new System.Drawing.Size(150, 23);
+            this.btnRegistrarExterno.TabIndex = 9;
+            this.btnRegistrarExterno.Text = "Registrar";
+            this.btnRegistrarExterno.UseVisualStyleBackColor = true;
+            this.btnRegistrarExterno.Click += new System.EventHandler(this.btnRegistrarExterno_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(24, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(105, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Numero de personas";
             // 
             // Pedir_Cubiculo
             // 
@@ -335,6 +462,8 @@
             this.tabAlumnos.PerformLayout();
             this.tabPersonal.ResumeLayout(false);
             this.tabPersonal.PerformLayout();
+            this.tabExternos.ResumeLayout(false);
+            this.tabExternos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -367,5 +496,17 @@
         private System.Windows.Forms.TextBox txtNoTarjeta;
         private System.Windows.Forms.ComboBox cmbNumPersonasDocente;
         private System.Windows.Forms.Label lblNumeroCubiculoDocente;
+        private System.Windows.Forms.Label lblNumeroCubiculoExterno;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtApellidoPatExt;
+        private System.Windows.Forms.TextBox txtApellidoMatExt;
+        private System.Windows.Forms.TextBox txtNombreExterno;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbNumPersonasExterno;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnRegistrarExterno;
     }
 }

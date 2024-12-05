@@ -257,24 +257,30 @@ namespace CubiculoProjecto
         }
         public bool CubiculoEstaOcupado(int numeroCubiculo)
         {
-            const string query = @"
-                SELECT COUNT(*)
-                FROM Registros_Alumnos
-                WHERE numero_cubiculo = @numero_cubiculo AND hora_salida IS NULL";
-
-            using (SqlConnection conn = CreateConnection())
+            try
             {
-                conn.Open();
-
-                using (var command = conn.CreateCommand())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.CommandText = query;
-                    command.Parameters.Add(new SqlParameter("@numero_cubiculo", numeroCubiculo.ToString()));
+                    string query = @"
+                        SELECT COUNT(*) FROM (
+                            SELECT numero_cubiculo FROM Registros_Alumnos WHERE numero_cubiculo = @NumeroCubiculo AND hora_salida IS NULL
+                            UNION
+                            SELECT numero_cubiculo FROM Registros_Personal WHERE numero_cubiculo = @NumeroCubiculo AND hora_salida IS NULL
+                            UNION
+                            SELECT numero_cubiculo FROM Registros_Externos WHERE numero_cubiculo = @NumeroCubiculo AND hora_salida IS NULL
+                        ) AS ocupados";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NumeroCubiculo", numeroCubiculo.ToString());
 
+                    connection.Open();
                     int count = (int)command.ExecuteScalar();
 
                     return count > 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar si el cubículo está ocupado: " + ex.Message);
             }
         }
         public RegistroCubiculoAlumnos ObtenerRegistroActivoPorCubiculo(int numeroCubiculo)
@@ -385,6 +391,88 @@ namespace CubiculoProjecto
                         }
                     }
                 }
+            }
+        }        public void RegistrarExterno(RegistroCubiculoExternos registro)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "INSERT INTO Registros_Externos (nombre, apellido_paterno, apellido_materno, numero_cubiculo, numero_personas, hora_entrada) VALUES (@nombre, @apellido_paterno, @apellido_materno, @cubiculo, @personas, @horaentrada)";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@nombre", registro.nombre);
+                    command.Parameters.AddWithValue("@apellido_paterno", registro.apellido_paterno);
+                    command.Parameters.AddWithValue("@apellido_materno", registro.apellido_materno);
+                    command.Parameters.AddWithValue("@cubiculo", registro.numero_cubiculo);
+                    command.Parameters.AddWithValue("@personas", registro.numero_personas);
+                    command.Parameters.AddWithValue("@horaentrada", registro.hora_entrada);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al registrar al externo: " + ex.Message);
+            }
+        }
+        public RegistroCubiculoExternos ObtenerRegistroActivoPorCubiculoExterno(int numeroCubiculo)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT TOP 1 * FROM Registros_Externos WHERE numero_cubiculo = @NumeroCubiculo AND hora_salida IS NULL ORDER BY hora_entrada DESC";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NumeroCubiculo", numeroCubiculo.ToString());
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        RegistroCubiculoExternos registro = new RegistroCubiculoExternos
+                        {
+                            num_prestamo = reader["num_prestamo"].ToString(),
+                            nombre = reader["nombre"].ToString(),
+                            apellido_paterno = reader["apellido_paterno"].ToString(),
+                            apellido_materno = reader["apellido_materno"].ToString(),
+                            numero_cubiculo = reader["numero_cubiculo"].ToString(),
+                            numero_personas = reader["numero_personas"].ToString(),
+                            hora_entrada = DateTime.Parse(reader["hora_entrada"].ToString())
+                        };
+                        return registro;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el registro activo del usuario externo: " + ex.Message);
+            }
+        }
+        public void ActualizarHoraSalidaExterno(int numPrestamo)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE Registros_Externos SET hora_salida = @HoraSalida WHERE num_prestamo = @NumPrestamo";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@HoraSalida", DateTime.Now);
+                    command.Parameters.AddWithValue("@NumPrestamo", numPrestamo);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la hora de salida del usuario externo: " + ex.Message);
             }
         }
 

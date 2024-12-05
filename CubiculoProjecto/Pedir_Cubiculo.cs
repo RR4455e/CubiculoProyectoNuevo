@@ -14,6 +14,11 @@ namespace CubiculoProjecto
     {
         private int numeroCubiculo;
         private Menu_Cubiculos menuCubiculosForm;
+        private TabControl tabControl;
+        private TabPage tabPageAlumno;
+        private TabPage tabPagePersonal;
+        private TabPage tabPageExternos;
+
 
         public Pedir_Cubiculo(int numeroCubiculo, Menu_Cubiculos menuCubiculosForm)
         {
@@ -22,9 +27,18 @@ namespace CubiculoProjecto
             this.numeroCubiculo = numeroCubiculo;
             this.menuCubiculosForm = menuCubiculosForm;
 
+            // Inicializar referencias
+            tabControl = this.tabControl1; 
+            tabPageAlumno = this.tabAlumnos; 
+            tabPagePersonal = this.tabPersonal;
+            tabPageExternos = this.tabExternos;
+
+
             // Mostrar el número de cubículo en las pestañas
             lblNumeroCubiculoAlumno.Text = numeroCubiculo.ToString();
             lblNumeroCubiculoDocente.Text = numeroCubiculo.ToString();
+            lblNumeroCubiculoExterno.Text = numeroCubiculo.ToString();
+
 
             // Eventos para alumnos
             txtNumControl.TextChanged += txtNumControl_TextChanged;
@@ -33,6 +47,10 @@ namespace CubiculoProjecto
             // Eventos para docentes
             txtNoTarjeta.TextChanged += txtNoTarjeta_TextChanged;
             btnRegistrarDocente.Click += btnRegistrarDocente_Click;
+           
+            // Eventos para externos
+            btnRegistrarExterno.Click += btnRegistrarExterno_Click;
+
         }
 
         // =======================
@@ -57,31 +75,35 @@ namespace CubiculoProjecto
 
         private void BuscarAlumno(string numeroControl)
         {
-            try
+            if (tabControl.SelectedTab == tabPageAlumno)
             {
-                ConexionBD conexion = new ConexionBD();
-                Alumno alumno = conexion.ObtenerAlumno(numeroControl);
+                try
+                {
+                    ConexionBD conexion = new ConexionBD();
+                    Alumno alumno = conexion.ObtenerAlumno(numeroControl);
 
-                if (alumno != null)
-                {
-                    lblNombreAlumno.Text = alumno.nombre_alumno;
-                    lblApellidoPatAlumno.Text = alumno.apellido_paterno;
-                    lblApellidoMatAlumno.Text = alumno.apellido_materno;
-                    lblSexoAlumno.Text = alumno.sexo;
-                    lblSemestreAlumno.Text = alumno.semestre.ToString();
-                    dtpFechaNaciAlumno.Value = alumno.fecha_nacimiento;
-                    lblNombreCarreraAlumno.Text = alumno.nombre_carrera;
-                    lblidCarreraAlumno.Text = alumno.id_carrera.ToString();
+
+                    if (alumno != null)
+                    {
+                        lblNombreAlumno.Text = alumno.nombre_alumno;
+                        lblApellidoPatAlumno.Text = alumno.apellido_paterno;
+                        lblApellidoMatAlumno.Text = alumno.apellido_materno;
+                        lblSexoAlumno.Text = alumno.sexo;
+                        lblSemestreAlumno.Text = alumno.semestre.ToString();
+                        dtpFechaNaciAlumno.Value = alumno.fecha_nacimiento;
+                        lblNombreCarreraAlumno.Text = alumno.nombre_carrera;
+                        lblidCarreraAlumno.Text = alumno.id_carrera.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un alumno con ese número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarCamposDatosAlumno();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("No se encontró un alumno con ese número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCamposDatosAlumno();
+                    MessageBox.Show("Error al buscar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -99,46 +121,49 @@ namespace CubiculoProjecto
 
         private void btnRegistrarAlumno_Click(object sender, EventArgs e)
         {
-            try
+            if (tabControl.SelectedTab == tabPageAlumno)
             {
-                if (string.IsNullOrEmpty(txtNumControl.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblNombreAlumno.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblApellidoPatAlumno.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblApellidoMatAlumno.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblSexoAlumno.Text.Trim()) ||
-                    cmbNumPersonasAlumno.SelectedItem == null)
+                try
                 {
-                    MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    if (string.IsNullOrEmpty(txtNumControl.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblNombreAlumno.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblApellidoPatAlumno.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblApellidoMatAlumno.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblSexoAlumno.Text.Trim()) ||
+                        cmbNumPersonasAlumno.SelectedItem == null)
+                    {
+                        MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    RegistroCubiculoAlumnos registro = new RegistroCubiculoAlumnos
+                    {
+                        numero_control = txtNumControl.Text.Trim(),
+                        nombre_alumno = lblNombreAlumno.Text.Trim(),
+                        apellido_paterno = lblApellidoPatAlumno.Text.Trim(),
+                        apellido_materno = lblApellidoMatAlumno.Text.Trim(),
+                        sexo = lblSexoAlumno.Text.Trim(),
+                        semestre = lblSemestreAlumno.Text.Trim(),
+                        id_carrera = lblidCarreraAlumno.Text.Trim(),
+                        fecha_nacimiento = dtpFechaNaciAlumno.Value,
+                        numero_cubiculo = numeroCubiculo.ToString(),
+                        numero_personas = cmbNumPersonasAlumno.SelectedItem.ToString(),
+                        hora_entrada = DateTime.Now
+                    };
+
+                    ConexionBD conexion = new ConexionBD();
+                    conexion.RegistrarAlumno(registro);
+
+                    MessageBox.Show("Registro realizado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    menuCubiculosForm.ActualizarBotonCubiculo(numeroCubiculo);
+
+                    this.Close();
                 }
-
-                RegistroCubiculoAlumnos registro = new RegistroCubiculoAlumnos
+                catch (Exception ex)
                 {
-                    numero_control = txtNumControl.Text.Trim(),
-                    nombre_alumno = lblNombreAlumno.Text.Trim(),
-                    apellido_paterno = lblApellidoPatAlumno.Text.Trim(),
-                    apellido_materno = lblApellidoMatAlumno.Text.Trim(),
-                    sexo = lblSexoAlumno.Text.Trim(),
-                    semestre = lblSemestreAlumno.Text.Trim(),
-                    id_carrera = lblidCarreraAlumno.Text.Trim(),
-                    fecha_nacimiento = dtpFechaNaciAlumno.Value,
-                    numero_cubiculo = numeroCubiculo.ToString(),
-                    numero_personas = cmbNumPersonasAlumno.SelectedItem.ToString(),
-                    hora_entrada = DateTime.Now
-                };
-
-                ConexionBD conexion = new ConexionBD();
-                conexion.RegistrarAlumno(registro);
-
-                MessageBox.Show("Registro realizado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                menuCubiculosForm.ActualizarBotonCubiculo(numeroCubiculo);
-
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al registrar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al registrar el alumno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -162,29 +187,31 @@ namespace CubiculoProjecto
 
         private void BuscarDocente(string noTarjeta)
         {
-            try
+            if (tabControl.SelectedTab == tabPagePersonal)
             {
-                ConexionBD conexion = new ConexionBD();
-                Personal_Activo docente = conexion.ObtenerPersonalActivo(noTarjeta);
+                try
+                {
+                    ConexionBD conexion = new ConexionBD();
+                    Personal_Activo docente = conexion.ObtenerPersonalActivo(noTarjeta);
 
-                if (docente != null)
-                {
-                    lblNombreDocente.Text = docente.nombre_empleado;
-                    lblApellidosDocente.Text = docente.apellidos_empleado;
-                    lblAreaDocente.Text = docente.descripcion_area;
+                    if (docente != null)
+                    {
+                        lblNombreDocente.Text = docente.nombre_empleado;
+                        lblApellidosDocente.Text = docente.apellidos_empleado;
+                        lblAreaDocente.Text = docente.descripcion_area;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un docente con ese número de tarjeta.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarCamposDatosDocente();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("No se encontró un docente con ese número de tarjeta.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCamposDatosDocente();
+                    //MessageBox.Show("Error al buscar el docente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show("Error al buscar el docente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void LimpiarCamposDatosDocente()
         {
             lblNombreDocente.Text = string.Empty;
@@ -194,41 +221,86 @@ namespace CubiculoProjecto
 
         private void btnRegistrarDocente_Click(object sender, EventArgs e)
         {
-            try
+            if (tabControl.SelectedTab == tabPagePersonal)
             {
-                if (string.IsNullOrEmpty(txtNoTarjeta.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblNombreDocente.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblApellidosDocente.Text.Trim()) ||
-                    string.IsNullOrEmpty(lblAreaDocente.Text.Trim()) ||
-                    cmbNumPersonasDocente.SelectedItem == null)
+                try
                 {
-                    MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    if (string.IsNullOrEmpty(txtNoTarjeta.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblNombreDocente.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblApellidosDocente.Text.Trim()) ||
+                        string.IsNullOrEmpty(lblAreaDocente.Text.Trim()) ||
+                        cmbNumPersonasDocente.SelectedItem == null)
+                    {
+                        //MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    RegistroCubiculoPersonal registro = new RegistroCubiculoPersonal
+                    {
+                        no_tarjeta = txtNoTarjeta.Text.Trim(),
+                        nombre_personal = lblNombreDocente.Text.Trim(),
+                        apellidos_personal = lblApellidosDocente.Text.Trim(),
+                        descripcion_area = lblAreaDocente.Text.Trim(),
+                        numero_cubiculo = numeroCubiculo.ToString(),
+                        numero_personas = cmbNumPersonasDocente.SelectedItem.ToString(),
+                        hora_entrada = DateTime.Now
+                    };
+
+                    ConexionBD conexion = new ConexionBD();
+                    conexion.RegistrarPersonal(registro);
+
+                    MessageBox.Show("Registro realizado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    menuCubiculosForm.ActualizarBotonCubiculo(numeroCubiculo);
+
+                    this.Close();
                 }
-
-                RegistroCubiculoPersonal registro = new RegistroCubiculoPersonal
+                catch (Exception ex)
                 {
-                    no_tarjeta = txtNoTarjeta.Text.Trim(),
-                    nombre_personal = lblNombreDocente.Text.Trim(),
-                    apellidos_personal = lblApellidosDocente.Text.Trim(),
-                    descripcion_area = lblAreaDocente.Text.Trim(),
-                    numero_cubiculo = numeroCubiculo.ToString(),
-                    numero_personas = cmbNumPersonasDocente.SelectedItem.ToString(),
-                    hora_entrada = DateTime.Now
-                };
-
-                ConexionBD conexion = new ConexionBD();
-                conexion.RegistrarPersonal(registro);
-
-                MessageBox.Show("Registro realizado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                menuCubiculosForm.ActualizarBotonCubiculo(numeroCubiculo);
-
-                this.Close();
+                    MessageBox.Show("Error al registrar al docente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+        }
+
+        private void btnRegistrarExterno_Click(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == tabPageExternos)
             {
-                MessageBox.Show("Error al registrar al docente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    // Validar que los campos requeridos no estén vacíos
+                    if (string.IsNullOrEmpty(txtNombreExterno.Text.Trim()) ||
+                        string.IsNullOrEmpty(txtApellidoPatExt.Text.Trim()) ||
+                        string.IsNullOrEmpty(txtApellidoMatExt.Text.Trim()) ||
+                        cmbNumPersonasExterno.SelectedItem == null)
+                    {
+                        //MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    RegistroCubiculoExternos registro = new RegistroCubiculoExternos
+                    {
+                        nombre = txtNombreExterno.Text.Trim(),
+                        apellido_paterno = txtApellidoPatExt.Text.Trim(),
+                        apellido_materno = txtApellidoMatExt.Text.Trim(),
+                        numero_cubiculo = numeroCubiculo.ToString(),
+                        numero_personas = cmbNumPersonasExterno.SelectedItem.ToString(),
+                        hora_entrada = DateTime.Now
+                    };
+
+                    ConexionBD conexion = new ConexionBD();
+                    conexion.RegistrarExterno(registro);
+
+                    MessageBox.Show("Registro de externo realizado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    menuCubiculosForm.ActualizarBotonCubiculo(numeroCubiculo);
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al registrar al externo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
