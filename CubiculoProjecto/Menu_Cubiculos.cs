@@ -41,7 +41,6 @@ namespace CubiculoProyectoNuevo
             // Suscribirse al evento Load del formulario
             this.Load += Menu_Cubiculos_Load;
 
-            btnAdminCubiculo.Click += btnAdminCubiculo_Click;
 
         }
 

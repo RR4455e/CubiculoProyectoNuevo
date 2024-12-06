@@ -12,13 +12,12 @@ namespace CubiculoProyectoNuevo
 {
     public partial class LoginForm : Form
     {
-        // Puedes ajustar estos valores para el inicio de sesión
-        private string usuarioValido = "admin";
-        private string contraseñaValida = "12345";
+        private ConexionBD conexionBD;
 
         public LoginForm()
         {
             InitializeComponent();
+            conexionBD = new ConexionBD();
             btnIniciarSesion.Click += btnIniciarSesion_Click;
         }
 
@@ -27,7 +26,7 @@ namespace CubiculoProyectoNuevo
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (usuario == usuarioValido && contraseña == contraseñaValida)
+            if (conexionBD.VerificarCredencialesAdministrador(usuario, contraseña))
             {
                 // Inicio de sesión exitoso
                 AdminCubiculo adminCubiculoForm = new AdminCubiculo();

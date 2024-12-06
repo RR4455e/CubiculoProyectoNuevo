@@ -8,6 +8,7 @@ using System.Collections;
 using System.Data;
 using System.Configuration;
 using DocumentFormat.OpenXml.Math;
+using System.Security.Cryptography;
 
 namespace CubiculoProyectoNuevo
 {
@@ -528,6 +529,82 @@ namespace CubiculoProyectoNuevo
                 }
             }
             return tabla;
+        }
+        public bool VerificarCredencialesAdministrador(string nombreUsuario, string contraseña)
+        {
+            const string query = @"
+            SELECT COUNT(*)
+            FROM Administradores
+            WHERE nombre_usuario = @nombre_usuario AND contraseña_usuario = @contraseña_usuario";
+
+            using (SqlConnection conn = CreateConnection())
+            {
+                conn.Open();
+
+                using (var command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Parameters.Add(new SqlParameter("@nombre_usuario", nombreUsuario));
+                    command.Parameters.Add(new SqlParameter("@contraseña_usuario", HashContraseña(contraseña)));
+
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+        public void AgregarAdministrador(string nombreUsuario, string contraseña)
+        {
+            const string query = @"
+                INSERT INTO Administradores (nombre_usuario, contraseña_usuario)
+                VALUES (@nombre_usuario, @contraseña_usuario)";
+
+            using (SqlConnection conn = CreateConnection())
+            {
+                conn.Open();
+
+                using (var command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Parameters.Add(new SqlParameter("@nombre_usuario", nombreUsuario));
+                    command.Parameters.Add(new SqlParameter("@contraseña_usuario", HashContraseña(contraseña)));
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public void CambiarContraseñaAdministrador(string nombreUsuario, string nuevaContraseña)
+        {
+            const string query = @"
+                UPDATE Administradores
+                SET contraseña_usuario = @nueva_contraseña
+                WHERE nombre_usuario = @nombre_usuario";
+
+            using (SqlConnection conn = CreateConnection())
+            {
+                conn.Open();
+
+                using (var command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Parameters.Add(new SqlParameter("@nombre_usuario", nombreUsuario));
+                    command.Parameters.Add(new SqlParameter("@nueva_contraseña", HashContraseña(nuevaContraseña)));
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        private string HashContraseña(string contraseña)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }
