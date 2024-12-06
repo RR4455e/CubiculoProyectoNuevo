@@ -40,6 +40,9 @@ namespace CubiculoProyectoNuevo
 
             // Suscribirse al evento Load del formulario
             this.Load += Menu_Cubiculos_Load;
+
+            btnAdminCubiculo.Click += btnAdminCubiculo_Click;
+
         }
 
         private void BotonCubiculo_Click(object sender, EventArgs e, int numeroCubiculo)
@@ -125,50 +128,9 @@ namespace CubiculoProyectoNuevo
             timersCubiculos[numeroCubiculo] = timer;
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
-        {
-            // Llamar al método para exportar datos
-            ExportarDatosAExcel();
-        }
+       
 
-        private void ExportarDatosAExcel()
-        {
-            try
-            {
-                // Crear una instancia de ConexionBD y obtener los datos
-                ConexionBD conexion = new ConexionBD();
-                DataTable datos = conexion.ObtenerRegistrosAlumnos();
-
-                if (datos.Rows.Count > 0)
-                {
-                    // Crear un libro de Excel
-                    using (XLWorkbook workbook = new XLWorkbook())
-                    {
-                        // Añadir una hoja con el nombre "Registros"
-                        var hoja = workbook.Worksheets.Add(datos, "Registros");
-
-                        // Guardar el archivo en una ruta especificada
-                        SaveFileDialog saveFileDialog = new SaveFileDialog();
-                        saveFileDialog.Filter = "Archivo de Excel (*.xlsx)|*.xlsx";
-                        saveFileDialog.FileName = "Registros_Alumnos.xlsx";
-
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            workbook.SaveAs(saveFileDialog.FileName);
-                            MessageBox.Show("Datos exportados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No hay datos para exportar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al exportar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         public void LiberarCubiculo(int numeroCubiculo)
         {
             ConexionBD conexion = new ConexionBD();
@@ -223,6 +185,13 @@ namespace CubiculoProyectoNuevo
                     boton.Text = $"Cubículo {i}";
                 }
             }
+        }
+
+        private void btnAdminCubiculo_Click(object sender, EventArgs e)
+        {
+            // Abrir el formulario de inicio de sesión
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
         }
     }
 }

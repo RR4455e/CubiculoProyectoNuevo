@@ -30,12 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabReportes = new System.Windows.Forms.TabPage();
-            this.tabAdminTablas = new System.Windows.Forms.TabPage();
+            this.cmbTabla = new System.Windows.Forms.ComboBox();
             this.btnExportarReporte = new System.Windows.Forms.Button();
             this.dtpFechaReporte = new System.Windows.Forms.DateTimePicker();
             this.cmbTipoReporte = new System.Windows.Forms.ComboBox();
+            this.tabAdminTablas = new System.Windows.Forms.TabPage();
             this.tabAgregaUser = new System.Windows.Forms.TabPage();
-            this.cmbTabla = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabReportes.SuspendLayout();
             this.SuspendLayout();
@@ -65,15 +65,13 @@
             this.tabReportes.Text = "Reportes";
             this.tabReportes.UseVisualStyleBackColor = true;
             // 
-            // tabAdminTablas
+            // cmbTabla
             // 
-            this.tabAdminTablas.Location = new System.Drawing.Point(4, 22);
-            this.tabAdminTablas.Name = "tabAdminTablas";
-            this.tabAdminTablas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAdminTablas.Size = new System.Drawing.Size(366, 400);
-            this.tabAdminTablas.TabIndex = 1;
-            this.tabAdminTablas.Text = "Administracion de tablas";
-            this.tabAdminTablas.UseVisualStyleBackColor = true;
+            this.cmbTabla.FormattingEnabled = true;
+            this.cmbTabla.Location = new System.Drawing.Point(87, 100);
+            this.cmbTabla.Name = "cmbTabla";
+            this.cmbTabla.Size = new System.Drawing.Size(121, 21);
+            this.cmbTabla.TabIndex = 9;
             // 
             // btnExportarReporte
             // 
@@ -94,14 +92,20 @@
             // cmbTipoReporte
             // 
             this.cmbTipoReporte.FormattingEnabled = true;
-            this.cmbTipoReporte.Items.AddRange(new object[] {
-            "Día",
-            "Semana",
-            "Mes"});
             this.cmbTipoReporte.Location = new System.Drawing.Point(87, 72);
             this.cmbTipoReporte.Name = "cmbTipoReporte";
             this.cmbTipoReporte.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoReporte.TabIndex = 6;
+            // 
+            // tabAdminTablas
+            // 
+            this.tabAdminTablas.Location = new System.Drawing.Point(4, 22);
+            this.tabAdminTablas.Name = "tabAdminTablas";
+            this.tabAdminTablas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAdminTablas.Size = new System.Drawing.Size(366, 400);
+            this.tabAdminTablas.TabIndex = 1;
+            this.tabAdminTablas.Text = "Administracion de tablas";
+            this.tabAdminTablas.UseVisualStyleBackColor = true;
             // 
             // tabAgregaUser
             // 
@@ -111,19 +115,6 @@
             this.tabAgregaUser.TabIndex = 2;
             this.tabAgregaUser.Text = "Usuarios";
             this.tabAgregaUser.UseVisualStyleBackColor = true;
-            // 
-            // cmbTabla
-            // 
-            this.cmbTabla.FormattingEnabled = true;
-            this.cmbTabla.Items.AddRange(new object[] {
-            "Alumnos",
-            "Personal",
-            "Externos",
-            "Todas"});
-            this.cmbTabla.Location = new System.Drawing.Point(87, 100);
-            this.cmbTabla.Name = "cmbTabla";
-            this.cmbTabla.Size = new System.Drawing.Size(121, 21);
-            this.cmbTabla.TabIndex = 9;
             // 
             // AdminCubiculo
             // 

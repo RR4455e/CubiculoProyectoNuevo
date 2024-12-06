@@ -32,7 +32,9 @@ namespace CubiculoProyectoNuevo
             cmbTabla.Items.Add("Externos");
             cmbTabla.Items.Add("Todas");
             cmbTabla.SelectedIndex = 3; // Selecciona "Todas" por defecto
+            btnExportarReporte.Click += btnExportarReporte_Click;
         }
+
 
         private void btnExportarReporte_Click(object sender, EventArgs e)
         {
