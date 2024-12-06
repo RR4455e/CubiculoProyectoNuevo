@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CubiculoProjecto
+namespace CubiculoProyectoNuevo
 {
     public partial class Pedir_Cubiculo : Form
     {

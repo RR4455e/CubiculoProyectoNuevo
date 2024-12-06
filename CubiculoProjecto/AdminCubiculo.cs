@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ClosedXML.Excel;
 using System.Data.SqlClient;
 
-namespace CubiculoProjecto
+namespace CubiculoProyectoNuevo
 {
     public partial class AdminCubiculo : Form
     {

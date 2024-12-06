@@ -9,7 +9,7 @@ using System.Data;
 using System.Configuration;
 using DocumentFormat.OpenXml.Math;
 
-namespace CubiculoProjecto
+namespace CubiculoProyectoNuevo
 {
     public class ConexionBD
     {

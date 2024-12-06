@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CubiculoProjecto
+namespace CubiculoProyectoNuevo
 {
     public class RegistroCubiculoAlumnos
     {

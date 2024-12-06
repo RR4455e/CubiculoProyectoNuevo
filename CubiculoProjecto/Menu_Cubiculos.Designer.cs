@@ -1,4 +1,4 @@
-﻿namespace CubiculoProjecto
+﻿namespace CubiculoProyectoNuevo
 {
     partial class Menu_Cubiculos
     {
