@@ -476,5 +476,58 @@ namespace CubiculoProjecto
             }
         }
 
+        public DataTable ObtenerRegistrosAlumnosPorFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable tabla = new DataTable();
+            using (SqlConnection conexion = CreateConnection())
+            {
+                string consulta = "SELECT * FROM Registros_Alumnos WHERE hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    comando.Parameters.AddWithValue("@fechaFin", fechaFin);
+                    conexion.Open();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                    adaptador.Fill(tabla);
+                }
+            }
+            return tabla;
+        }
+
+        public DataTable ObtenerRegistrosPersonalPorFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable tabla = new DataTable();
+            using (SqlConnection conexion = CreateConnection())
+            {
+                string consulta = "SELECT * FROM Registros_Personal WHERE hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    comando.Parameters.AddWithValue("@fechaFin", fechaFin);
+                    conexion.Open();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                    adaptador.Fill(tabla);
+                }
+            }
+            return tabla;
+        }
+
+        public DataTable ObtenerRegistrosExternosPorFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable tabla = new DataTable();
+            using (SqlConnection conexion = CreateConnection())
+            {
+                string consulta = "SELECT * FROM Registros_Externos WHERE hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    comando.Parameters.AddWithValue("@fechaFin", fechaFin);
+                    conexion.Open();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                    adaptador.Fill(tabla);
+                }
+            }
+            return tabla;
+        }
     }
 }

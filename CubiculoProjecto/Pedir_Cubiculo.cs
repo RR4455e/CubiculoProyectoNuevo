@@ -96,7 +96,7 @@ namespace CubiculoProjecto
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró un alumno con ese número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("No se encontró un alumno con ese número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimpiarCamposDatosAlumno();
                     }
                 }
