@@ -24,6 +24,7 @@ namespace CubiculoProyectoNuevo
             cmbTipoReporte.Items.Add("Día");
             cmbTipoReporte.Items.Add("Semana");
             cmbTipoReporte.Items.Add("Mes");
+            cmbTipoReporte.Items.Add("Todo"); 
             cmbTipoReporte.SelectedIndex = 0; // Selecciona "Día" por defecto
 
             // Inicializa el ComboBox con las opciones de tablas a exportar
@@ -32,14 +33,15 @@ namespace CubiculoProyectoNuevo
             cmbTabla.Items.Add("Externos");
             cmbTabla.Items.Add("Todas");
             cmbTabla.SelectedIndex = 3; // Selecciona "Todas" por defecto
+
             btnExportarReporte.Click += btnExportarReporte_Click;
-            // Asigna el evento Click para btnAgregarUsuario
+
         }
 
 
         private void btnExportarReporte_Click(object sender, EventArgs e)
         {
-            // Obtener la fecha seleccionada
+            // Obtener la fecha seleccionada (no será relevante si se selecciona "Todo")
             DateTime fechaSeleccionada = dtpFechaReporte.Value.Date;
 
             // Determinar el rango de fechas según el tipo de reporte
@@ -61,8 +63,12 @@ namespace CubiculoProyectoNuevo
                     fechaInicio = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, 1);
                     fechaFin = fechaInicio.AddMonths(1).AddSeconds(-1);
                     break;
+                case "Todo":
+                    fechaInicio = new DateTime(1753, 1, 1); // Fecha mínima válida para SQL Server
+                    fechaFin = new DateTime(9999, 12, 31, 23, 59, 59); // Fecha máxima válida para SQL Server
+                    break;
                 default:
-                    MessageBox.Show("Selecciona un tipo de reporte válido.");
+                    MessageBox.Show("Selecciona un tipo de reporte válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
             }
 
@@ -89,7 +95,7 @@ namespace CubiculoProyectoNuevo
                     dtExternos = conexionBD.ObtenerRegistrosExternosPorFecha(fechaInicio, fechaFin);
                     break;
                 default:
-                    MessageBox.Show("Selecciona una tabla válida para exportar.");
+                    MessageBox.Show("Selecciona una tabla válida para exportar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
             }
 
@@ -302,6 +308,5 @@ namespace CubiculoProyectoNuevo
                 MessageBox.Show("Error al cambiar la contraseña: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

@@ -42,7 +42,9 @@
             // btnCubiculos1
             // 
             this.btnCubiculos1.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos1.Location = new System.Drawing.Point(29, 41);
+            this.btnCubiculos1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos1.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos1.Location = new System.Drawing.Point(41, 56);
             this.btnCubiculos1.Name = "btnCubiculos1";
             this.btnCubiculos1.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos1.TabIndex = 0;
@@ -52,7 +54,9 @@
             // btnCubiculos2
             // 
             this.btnCubiculos2.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos2.Location = new System.Drawing.Point(219, 41);
+            this.btnCubiculos2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos2.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos2.Location = new System.Drawing.Point(231, 56);
             this.btnCubiculos2.Name = "btnCubiculos2";
             this.btnCubiculos2.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos2.TabIndex = 1;
@@ -62,7 +66,9 @@
             // btnCubiculos3
             // 
             this.btnCubiculos3.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos3.Location = new System.Drawing.Point(412, 41);
+            this.btnCubiculos3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos3.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos3.Location = new System.Drawing.Point(424, 56);
             this.btnCubiculos3.Name = "btnCubiculos3";
             this.btnCubiculos3.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos3.TabIndex = 2;
@@ -72,7 +78,9 @@
             // btnCubiculos4
             // 
             this.btnCubiculos4.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos4.Location = new System.Drawing.Point(593, 41);
+            this.btnCubiculos4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos4.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos4.Location = new System.Drawing.Point(605, 56);
             this.btnCubiculos4.Name = "btnCubiculos4";
             this.btnCubiculos4.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos4.TabIndex = 3;
@@ -82,7 +90,9 @@
             // btnCubiculos5
             // 
             this.btnCubiculos5.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos5.Location = new System.Drawing.Point(29, 232);
+            this.btnCubiculos5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos5.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos5.Location = new System.Drawing.Point(41, 247);
             this.btnCubiculos5.Name = "btnCubiculos5";
             this.btnCubiculos5.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos5.TabIndex = 4;
@@ -92,7 +102,9 @@
             // btnCubiculos6
             // 
             this.btnCubiculos6.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos6.Location = new System.Drawing.Point(219, 232);
+            this.btnCubiculos6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos6.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos6.Location = new System.Drawing.Point(231, 247);
             this.btnCubiculos6.Name = "btnCubiculos6";
             this.btnCubiculos6.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos6.TabIndex = 5;
@@ -102,7 +114,9 @@
             // btnCubiculos7
             // 
             this.btnCubiculos7.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos7.Location = new System.Drawing.Point(412, 232);
+            this.btnCubiculos7.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos7.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos7.Location = new System.Drawing.Point(424, 247);
             this.btnCubiculos7.Name = "btnCubiculos7";
             this.btnCubiculos7.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos7.TabIndex = 6;
@@ -112,7 +126,9 @@
             // btnCubiculos8
             // 
             this.btnCubiculos8.BackColor = System.Drawing.Color.Green;
-            this.btnCubiculos8.Location = new System.Drawing.Point(593, 232);
+            this.btnCubiculos8.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCubiculos8.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCubiculos8.Location = new System.Drawing.Point(605, 247);
             this.btnCubiculos8.Name = "btnCubiculos8";
             this.btnCubiculos8.Size = new System.Drawing.Size(164, 166);
             this.btnCubiculos8.TabIndex = 7;
@@ -121,7 +137,7 @@
             // 
             // btnAdminCubiculo
             // 
-            this.btnAdminCubiculo.Location = new System.Drawing.Point(650, 400);
+            this.btnAdminCubiculo.Location = new System.Drawing.Point(649, 444);
             this.btnAdminCubiculo.Name = "btnAdminCubiculo";
             this.btnAdminCubiculo.Size = new System.Drawing.Size(120, 30);
             this.btnAdminCubiculo.TabIndex = 8;
@@ -133,7 +149,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(800, 493);
             this.Controls.Add(this.btnAdminCubiculo);
             this.Controls.Add(this.btnCubiculos8);
             this.Controls.Add(this.btnCubiculos7);
@@ -143,8 +160,11 @@
             this.Controls.Add(this.btnCubiculos3);
             this.Controls.Add(this.btnCubiculos2);
             this.Controls.Add(this.btnCubiculos1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 532);
+            this.MinimumSize = new System.Drawing.Size(816, 532);
             this.Name = "Menu_Cubiculos";
-            this.Text = "Form1";
             this.ResumeLayout(false);
 
         }

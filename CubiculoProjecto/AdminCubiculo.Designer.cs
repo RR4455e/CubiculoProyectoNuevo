@@ -40,13 +40,21 @@
             this.btnRePersonal = new System.Windows.Forms.Button();
             this.btnReAlumnos = new System.Windows.Forms.Button();
             this.tabAgregaUser = new System.Windows.Forms.TabPage();
-            this.txtNuevoUsuario = new System.Windows.Forms.TextBox();
-            this.txtContraseñaNuevoUsuario = new System.Windows.Forms.TextBox();
-            this.txtUsuarioACambiar = new System.Windows.Forms.TextBox();
-            this.txtContraExistente = new System.Windows.Forms.TextBox();
-            this.txtContraCambiada = new System.Windows.Forms.TextBox();
-            this.btnAgregarUsuario = new System.Windows.Forms.Button();
             this.btnCambiarContraseña = new System.Windows.Forms.Button();
+            this.btnAgregarUsuario = new System.Windows.Forms.Button();
+            this.txtContraCambiada = new System.Windows.Forms.TextBox();
+            this.txtContraExistente = new System.Windows.Forms.TextBox();
+            this.txtUsuarioACambiar = new System.Windows.Forms.TextBox();
+            this.txtContraseñaNuevoUsuario = new System.Windows.Forms.TextBox();
+            this.txtNuevoUsuario = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabReportes.SuspendLayout();
             this.tabAdminTablas.SuspendLayout();
@@ -58,6 +66,7 @@
             this.tabControl1.Controls.Add(this.tabReportes);
             this.tabControl1.Controls.Add(this.tabAdminTablas);
             this.tabControl1.Controls.Add(this.tabAgregaUser);
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -67,10 +76,14 @@
             // 
             // tabReportes
             // 
+            this.tabReportes.Controls.Add(this.label4);
+            this.tabReportes.Controls.Add(this.label3);
+            this.tabReportes.Controls.Add(this.label2);
             this.tabReportes.Controls.Add(this.cmbTabla);
             this.tabReportes.Controls.Add(this.btnExportarReporte);
             this.tabReportes.Controls.Add(this.dtpFechaReporte);
             this.tabReportes.Controls.Add(this.cmbTipoReporte);
+            this.tabReportes.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabReportes.Location = new System.Drawing.Point(4, 22);
             this.tabReportes.Name = "tabReportes";
             this.tabReportes.Padding = new System.Windows.Forms.Padding(3);
@@ -82,31 +95,31 @@
             // cmbTabla
             // 
             this.cmbTabla.FormattingEnabled = true;
-            this.cmbTabla.Location = new System.Drawing.Point(55, 103);
+            this.cmbTabla.Location = new System.Drawing.Point(116, 75);
             this.cmbTabla.Name = "cmbTabla";
             this.cmbTabla.Size = new System.Drawing.Size(121, 21);
             this.cmbTabla.TabIndex = 9;
             // 
             // btnExportarReporte
             // 
-            this.btnExportarReporte.Location = new System.Drawing.Point(55, 166);
+            this.btnExportarReporte.Location = new System.Drawing.Point(94, 145);
             this.btnExportarReporte.Name = "btnExportarReporte";
-            this.btnExportarReporte.Size = new System.Drawing.Size(121, 23);
+            this.btnExportarReporte.Size = new System.Drawing.Size(161, 59);
             this.btnExportarReporte.TabIndex = 8;
             this.btnExportarReporte.Text = "Genera Reporte";
             this.btnExportarReporte.UseVisualStyleBackColor = true;
             // 
             // dtpFechaReporte
             // 
-            this.dtpFechaReporte.Location = new System.Drawing.Point(55, 130);
+            this.dtpFechaReporte.Location = new System.Drawing.Point(116, 103);
             this.dtpFechaReporte.Name = "dtpFechaReporte";
-            this.dtpFechaReporte.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaReporte.Size = new System.Drawing.Size(217, 22);
             this.dtpFechaReporte.TabIndex = 7;
             // 
             // cmbTipoReporte
             // 
             this.cmbTipoReporte.FormattingEnabled = true;
-            this.cmbTipoReporte.Location = new System.Drawing.Point(55, 75);
+            this.cmbTipoReporte.Location = new System.Drawing.Point(116, 48);
             this.cmbTipoReporte.Name = "cmbTipoReporte";
             this.cmbTipoReporte.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoReporte.TabIndex = 6;
@@ -117,6 +130,7 @@
             this.tabAdminTablas.Controls.Add(this.btnReExternos);
             this.tabAdminTablas.Controls.Add(this.btnRePersonal);
             this.tabAdminTablas.Controls.Add(this.btnReAlumnos);
+            this.tabAdminTablas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAdminTablas.Location = new System.Drawing.Point(4, 22);
             this.tabAdminTablas.Name = "tabAdminTablas";
             this.tabAdminTablas.Padding = new System.Windows.Forms.Padding(3);
@@ -142,36 +156,50 @@
             // 
             // btnReExternos
             // 
+            this.btnReExternos.BackColor = System.Drawing.Color.Red;
+            this.btnReExternos.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReExternos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnReExternos.Location = new System.Drawing.Point(56, 286);
             this.btnReExternos.Name = "btnReExternos";
             this.btnReExternos.Size = new System.Drawing.Size(250, 95);
             this.btnReExternos.TabIndex = 2;
             this.btnReExternos.Text = "Reiniciar Externos";
-            this.btnReExternos.UseVisualStyleBackColor = true;
+            this.btnReExternos.UseVisualStyleBackColor = false;
             this.btnReExternos.Click += new System.EventHandler(this.btnReExternos_Click);
             // 
             // btnRePersonal
             // 
+            this.btnRePersonal.BackColor = System.Drawing.Color.Red;
+            this.btnRePersonal.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRePersonal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRePersonal.Location = new System.Drawing.Point(56, 185);
             this.btnRePersonal.Name = "btnRePersonal";
             this.btnRePersonal.Size = new System.Drawing.Size(250, 95);
             this.btnRePersonal.TabIndex = 1;
             this.btnRePersonal.Text = "Reiniciar Personal";
-            this.btnRePersonal.UseVisualStyleBackColor = true;
+            this.btnRePersonal.UseVisualStyleBackColor = false;
             this.btnRePersonal.Click += new System.EventHandler(this.btnRePersonal_Click);
             // 
             // btnReAlumnos
             // 
+            this.btnReAlumnos.BackColor = System.Drawing.Color.Red;
+            this.btnReAlumnos.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReAlumnos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnReAlumnos.Location = new System.Drawing.Point(56, 84);
             this.btnReAlumnos.Name = "btnReAlumnos";
             this.btnReAlumnos.Size = new System.Drawing.Size(250, 95);
             this.btnReAlumnos.TabIndex = 0;
             this.btnReAlumnos.Text = "Reiniciar Alumnos";
-            this.btnReAlumnos.UseVisualStyleBackColor = true;
+            this.btnReAlumnos.UseVisualStyleBackColor = false;
             this.btnReAlumnos.Click += new System.EventHandler(this.btnReAlumnos_Click);
             // 
             // tabAgregaUser
             // 
+            this.tabAgregaUser.Controls.Add(this.label9);
+            this.tabAgregaUser.Controls.Add(this.label8);
+            this.tabAgregaUser.Controls.Add(this.label7);
+            this.tabAgregaUser.Controls.Add(this.label6);
+            this.tabAgregaUser.Controls.Add(this.label5);
             this.tabAgregaUser.Controls.Add(this.btnCambiarContraseña);
             this.tabAgregaUser.Controls.Add(this.btnAgregarUsuario);
             this.tabAgregaUser.Controls.Add(this.txtContraCambiada);
@@ -179,6 +207,7 @@
             this.tabAgregaUser.Controls.Add(this.txtUsuarioACambiar);
             this.tabAgregaUser.Controls.Add(this.txtContraseñaNuevoUsuario);
             this.tabAgregaUser.Controls.Add(this.txtNuevoUsuario);
+            this.tabAgregaUser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAgregaUser.Location = new System.Drawing.Point(4, 22);
             this.tabAgregaUser.Name = "tabAgregaUser";
             this.tabAgregaUser.Size = new System.Drawing.Size(355, 400);
@@ -186,54 +215,10 @@
             this.tabAgregaUser.Text = "Usuarios";
             this.tabAgregaUser.UseVisualStyleBackColor = true;
             // 
-            // txtNuevoUsuario
-            // 
-            this.txtNuevoUsuario.Location = new System.Drawing.Point(100, 75);
-            this.txtNuevoUsuario.Name = "txtNuevoUsuario";
-            this.txtNuevoUsuario.Size = new System.Drawing.Size(148, 20);
-            this.txtNuevoUsuario.TabIndex = 0;
-            // 
-            // txtContraseñaNuevoUsuario
-            // 
-            this.txtContraseñaNuevoUsuario.Location = new System.Drawing.Point(100, 101);
-            this.txtContraseñaNuevoUsuario.Name = "txtContraseñaNuevoUsuario";
-            this.txtContraseñaNuevoUsuario.Size = new System.Drawing.Size(148, 20);
-            this.txtContraseñaNuevoUsuario.TabIndex = 1;
-            // 
-            // txtUsuarioACambiar
-            // 
-            this.txtUsuarioACambiar.Location = new System.Drawing.Point(103, 190);
-            this.txtUsuarioACambiar.Name = "txtUsuarioACambiar";
-            this.txtUsuarioACambiar.Size = new System.Drawing.Size(148, 20);
-            this.txtUsuarioACambiar.TabIndex = 2;
-            // 
-            // txtContraExistente
-            // 
-            this.txtContraExistente.Location = new System.Drawing.Point(103, 216);
-            this.txtContraExistente.Name = "txtContraExistente";
-            this.txtContraExistente.Size = new System.Drawing.Size(148, 20);
-            this.txtContraExistente.TabIndex = 3;
-            // 
-            // txtContraCambiada
-            // 
-            this.txtContraCambiada.Location = new System.Drawing.Point(103, 242);
-            this.txtContraCambiada.Name = "txtContraCambiada";
-            this.txtContraCambiada.Size = new System.Drawing.Size(148, 20);
-            this.txtContraCambiada.TabIndex = 4;
-            // 
-            // btnAgregarUsuario
-            // 
-            this.btnAgregarUsuario.Location = new System.Drawing.Point(139, 127);
-            this.btnAgregarUsuario.Name = "btnAgregarUsuario";
-            this.btnAgregarUsuario.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarUsuario.TabIndex = 5;
-            this.btnAgregarUsuario.Text = "Agregar";
-            this.btnAgregarUsuario.UseVisualStyleBackColor = true;
-            this.btnAgregarUsuario.Click += new System.EventHandler(this.btnAgregarUsuario_Click);
-            // 
             // btnCambiarContraseña
             // 
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(139, 268);
+            this.btnCambiarContraseña.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(152, 298);
             this.btnCambiarContraseña.Name = "btnCambiarContraseña";
             this.btnCambiarContraseña.Size = new System.Drawing.Size(75, 23);
             this.btnCambiarContraseña.TabIndex = 6;
@@ -241,17 +226,149 @@
             this.btnCambiarContraseña.UseVisualStyleBackColor = true;
             this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
+            // btnAgregarUsuario
+            // 
+            this.btnAgregarUsuario.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarUsuario.Location = new System.Drawing.Point(152, 128);
+            this.btnAgregarUsuario.Name = "btnAgregarUsuario";
+            this.btnAgregarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarUsuario.TabIndex = 5;
+            this.btnAgregarUsuario.Text = "Agregar";
+            this.btnAgregarUsuario.UseVisualStyleBackColor = true;
+            this.btnAgregarUsuario.Click += new System.EventHandler(this.btnAgregarUsuario_Click);
+            // 
+            // txtContraCambiada
+            // 
+            this.txtContraCambiada.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraCambiada.Location = new System.Drawing.Point(114, 272);
+            this.txtContraCambiada.Name = "txtContraCambiada";
+            this.txtContraCambiada.Size = new System.Drawing.Size(148, 22);
+            this.txtContraCambiada.TabIndex = 4;
+            // 
+            // txtContraExistente
+            // 
+            this.txtContraExistente.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraExistente.Location = new System.Drawing.Point(114, 246);
+            this.txtContraExistente.Name = "txtContraExistente";
+            this.txtContraExistente.Size = new System.Drawing.Size(148, 22);
+            this.txtContraExistente.TabIndex = 3;
+            // 
+            // txtUsuarioACambiar
+            // 
+            this.txtUsuarioACambiar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuarioACambiar.Location = new System.Drawing.Point(114, 220);
+            this.txtUsuarioACambiar.Name = "txtUsuarioACambiar";
+            this.txtUsuarioACambiar.Size = new System.Drawing.Size(148, 22);
+            this.txtUsuarioACambiar.TabIndex = 2;
+            // 
+            // txtContraseñaNuevoUsuario
+            // 
+            this.txtContraseñaNuevoUsuario.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraseñaNuevoUsuario.Location = new System.Drawing.Point(116, 102);
+            this.txtContraseñaNuevoUsuario.Name = "txtContraseñaNuevoUsuario";
+            this.txtContraseñaNuevoUsuario.Size = new System.Drawing.Size(148, 22);
+            this.txtContraseñaNuevoUsuario.TabIndex = 1;
+            // 
+            // txtNuevoUsuario
+            // 
+            this.txtNuevoUsuario.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNuevoUsuario.Location = new System.Drawing.Point(116, 76);
+            this.txtNuevoUsuario.Name = "txtNuevoUsuario";
+            this.txtNuevoUsuario.Size = new System.Drawing.Size(148, 22);
+            this.txtNuevoUsuario.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Rango de reporte:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(73, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Tabla:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(70, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Fecha:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(104, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 21);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "AGREGAR USUARIO";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(87, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 21);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "REINICIAR CONTRASEÑA";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 223);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Nombre de usuario:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(3, 249);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Contraseña actual:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(4, 275);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(104, 13);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Nueva contraseña:";
+            // 
             // AdminCubiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SlateBlue;
             this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "AdminCubiculo";
+            this.ShowIcon = false;
+            this.TopMost = true;
             this.tabControl1.ResumeLayout(false);
             this.tabReportes.ResumeLayout(false);
+            this.tabReportes.PerformLayout();
             this.tabAdminTablas.ResumeLayout(false);
             this.tabAdminTablas.PerformLayout();
             this.tabAgregaUser.ResumeLayout(false);
@@ -281,5 +398,13 @@
         private System.Windows.Forms.TextBox txtUsuarioACambiar;
         private System.Windows.Forms.TextBox txtContraseñaNuevoUsuario;
         private System.Windows.Forms.TextBox txtNuevoUsuario;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
     }
 }

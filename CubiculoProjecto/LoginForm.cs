@@ -18,7 +18,9 @@ namespace CubiculoProyectoNuevo
         {
             InitializeComponent();
             conexionBD = new ConexionBD();
+            txtContraseña.UseSystemPasswordChar = true;
             btnIniciarSesion.Click += btnIniciarSesion_Click;
+
         }
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
