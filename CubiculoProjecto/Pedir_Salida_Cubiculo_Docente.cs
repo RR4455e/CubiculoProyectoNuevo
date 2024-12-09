@@ -43,25 +43,52 @@ namespace CubiculoProyectoNuevo
 
                 ConexionBD conexion = new ConexionBD();
 
-                // Obtener el registro activo del docente en el cubículo actual
-                RegistroCubiculoPersonal registroDocente = conexion.ObtenerRegistroActivoPorCubiculoYTarjeta(numeroCubiculo, noTarjeta);
-
-                if (registroDocente != null)
+                // Verificar si el número de tarjeta es el código genérico "12345"
+                if (noTarjeta == "12345")
                 {
-                    // Actualizar la hora de salida
-                    conexion.ActualizarHoraSalidaPersonal(int.Parse(registroDocente.num_prestamo));
+                    // Obtener el registro activo del docente en el cubículo sin verificar el número de tarjeta
+                    RegistroCubiculoPersonal registroDocente = conexion.ObtenerRegistroActivoPorCubiculoPersonal(numeroCubiculo);
 
-                    // Actualizar el botón en el formulario principal
-                    menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
+                    if (registroDocente != null)
+                    {
+                        // Actualizar la hora de salida
+                        conexion.ActualizarHoraSalidaPersonal(int.Parse(registroDocente.num_prestamo));
 
-                    MessageBox.Show("Salida registrada con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Actualizar el botón en el formulario principal
+                        menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
 
-                    // Cerrar el formulario actual
-                    this.Close();
+                        MessageBox.Show("Salida registrada con éxito mediante código genérico.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Cerrar el formulario actual
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un registro activo para este cubículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró un registro activo para este docente en el cubículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Obtener el registro activo del docente en el cubículo actual
+                    RegistroCubiculoPersonal registroDocente = conexion.ObtenerRegistroActivoPorCubiculoYTarjeta(numeroCubiculo, noTarjeta);
+
+                    if (registroDocente != null)
+                    {
+                        // Actualizar la hora de salida
+                        conexion.ActualizarHoraSalidaPersonal(int.Parse(registroDocente.num_prestamo));
+
+                        // Actualizar el botón en el formulario principal
+                        menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
+
+                        MessageBox.Show("Salida registrada con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Cerrar el formulario actual
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un registro activo para este docente en el cubículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)

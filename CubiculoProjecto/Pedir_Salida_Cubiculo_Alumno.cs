@@ -44,25 +44,52 @@ namespace CubiculoProyectoNuevo
             {
                 ConexionBD conexion = new ConexionBD();
 
-                // Obtener el registro activo del alumno en el cubículo
-                RegistroCubiculoAlumnos registro = conexion.ObtenerRegistroActivoPorCubiculo(numeroCubiculo);
-
-                if (registro != null && registro.numero_control == numeroControl)
+                // Verificar si el número de control es el código genérico "12345"
+                if (numeroControl == "12345")
                 {
-                    // Actualizar la hora de salida
-                    conexion.ActualizarHoraSalidaAlumnos(int.Parse(registro.num_prestamo));
+                    // Obtener el registro activo del cubículo sin verificar el número de control
+                    RegistroCubiculoAlumnos registro = conexion.ObtenerRegistroActivoPorCubiculo(numeroCubiculo);
 
-                    MessageBox.Show("Salida registrada exitosamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (registro != null)
+                    {
+                        // Actualizar la hora de salida
+                        conexion.ActualizarHoraSalidaAlumnos(int.Parse(registro.num_prestamo));
 
-                    // Actualizar el botón en Menu_Cubiculos
-                    menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
+                        MessageBox.Show("Salida registrada exitosamente mediante código genérico.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Cerrar el formulario
-                    this.Close();
+                        // Actualizar el botón en Menu_Cubiculos
+                        menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
+
+                        // Cerrar el formulario
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un registro activo para este cubículo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró un registro activo para este cubículo y número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Obtener el registro activo del alumno en el cubículo
+                    RegistroCubiculoAlumnos registro = conexion.ObtenerRegistroActivoPorCubiculo(numeroCubiculo);
+
+                    if (registro != null && registro.numero_control == numeroControl)
+                    {
+                        // Actualizar la hora de salida
+                        conexion.ActualizarHoraSalidaAlumnos(int.Parse(registro.num_prestamo));
+
+                        MessageBox.Show("Salida registrada exitosamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Actualizar el botón en Menu_Cubiculos
+                        menuCubiculosForm.LiberarCubiculo(numeroCubiculo);
+
+                        // Cerrar el formulario
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un registro activo para este cubículo y número de control.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
