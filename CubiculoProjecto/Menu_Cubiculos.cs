@@ -17,6 +17,8 @@ namespace CubiculoProyectoNuevo
         // Lista para almacenar los botones
         private List<Button> listaBotones;
         private Dictionary<int, Timer> timersCubiculos = new Dictionary<int, Timer>();
+        private Timer relojTimer;
+
 
         public Menu_Cubiculos()
         {
@@ -41,8 +43,31 @@ namespace CubiculoProyectoNuevo
             // Suscribirse al evento Load del formulario
             this.Load += Menu_Cubiculos_Load;
 
+            //Barra de color estetica
+            Panel barraColor = new Panel();
+            barraColor.BackColor = Color.DarkGoldenrod; 
+            barraColor.Height = 100; 
+            barraColor.Dock = DockStyle.Bottom;
+            this.Controls.Add(barraColor);
+            barraColor.SendToBack();
 
+
+            lblReloj.AutoSize = true;
+            lblReloj.ForeColor = Color.White;
+            lblReloj.Location = new System.Drawing.Point(10, 10);
+            this.Controls.Add(lblReloj);
+            barraColor.Controls.Add(lblReloj);
+
+            lblFecha.ForeColor = Color.White;
+            lblFecha.Location = new System.Drawing.Point(10, 35); // Ajusta la posición según sea necesario
+            barraColor.Controls.Add(lblFecha);
+
+            relojTimer = new Timer();
+            relojTimer.Interval = 1000; // Actualizar cada segundo
+            relojTimer.Tick += RelojTimer_Tick;
+            relojTimer.Start();
         }
+   
 
         private void BotonCubiculo_Click(object sender, EventArgs e, int numeroCubiculo)
         {
@@ -104,7 +129,7 @@ namespace CubiculoProyectoNuevo
             // Iniciar un temporizador para contar el tiempo
             Timer timer = new Timer();
             timer.Interval = 1000; // Actualizar cada segundo
-            DateTime horaFinal = DateTime.Now.AddSeconds(10);
+            DateTime horaFinal = DateTime.Now.AddHours(2);
 
             timer.Tick += (s, args) =>
             {
@@ -191,6 +216,11 @@ namespace CubiculoProyectoNuevo
             // Abrir el formulario de inicio de sesión
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
+        }
+        private void RelojTimer_Tick(object sender, EventArgs e)
+        {
+            lblReloj.Text = DateTime.Now.ToString("HH:mm:ss");
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
     }
 }
