@@ -45,7 +45,7 @@ namespace CubiculoProyectoNuevo
 
             //Barra de color estetica
             Panel barraColor = new Panel();
-            barraColor.BackColor = Color.DarkGoldenrod; 
+            barraColor.BackColor = Color.Orange; 
             barraColor.Height = 100; 
             barraColor.Dock = DockStyle.Bottom;
             this.Controls.Add(barraColor);

@@ -141,7 +141,7 @@
             // 
             // btnAdminCubiculo
             // 
-            this.btnAdminCubiculo.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAdminCubiculo.BackColor = System.Drawing.Color.Navy;
             this.btnAdminCubiculo.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
             this.btnAdminCubiculo.FlatAppearance.BorderSize = 0;
             this.btnAdminCubiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -176,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.label1.BackColor = System.Drawing.Color.Orange;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(166, 483);

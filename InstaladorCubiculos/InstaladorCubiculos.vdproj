@@ -1652,6 +1652,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -1676,6 +1684,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -5596,7 +5612,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Cubiculos"
         "ProductCode" = "8:{5973615E-CEA2-4E65-AE62-2636EDE808ED}"
-        "PackageCode" = "8:{596CD108-B59E-41CD-854A-C0F84687E484}"
+        "PackageCode" = "8:{9852A476-860B-4ECF-882F-80796B1CBB48}"
         "UpgradeCode" = "8:{F3C5916F-2188-44DA-9043-D179D4D4F664}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -5604,12 +5620,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Rombold"
+        "Manufacturer" = "8:TecNM-ITH"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Cubiculos"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Rombold"
+        "ARPCONTACT" = "8:TecNM-ITH"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -6131,7 +6147,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E80AD7C8F4F4805BD5D04A04283D600"
             {
-            "SourcePath" = "8:..\\CubiculoProjecto\\obj\\Debug\\CubiculoProyectoNuevo.exe"
+            "SourcePath" = "8:..\\CubiculoProjecto\\obj\\Release\\CubiculoProyectoNuevo.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A1B5E3CC46A54B3E9918766358A25275"

@@ -46,6 +46,8 @@
             this.txtNumControl = new System.Windows.Forms.TextBox();
             this.btnRegistrarAlumno = new System.Windows.Forms.Button();
             this.tabPersonal = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblNumeroCubiculoDocente = new System.Windows.Forms.Label();
             this.cmbNumPersonasDocente = new System.Windows.Forms.ComboBox();
@@ -66,8 +68,6 @@
             this.txtApellidoPatExt = new System.Windows.Forms.TextBox();
             this.txtApellidoMatExt = new System.Windows.Forms.TextBox();
             this.txtNombreExterno = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabAlumnos.SuspendLayout();
             this.tabPersonal.SuspendLayout();
@@ -280,6 +280,26 @@
             this.tabPersonal.TabIndex = 1;
             this.tabPersonal.Text = "Personal";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(61, 88);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 17);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Numero de tarjeta:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(32, 235);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(165, 17);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Numero de participantes:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -482,31 +502,11 @@
             this.txtNombreExterno.Size = new System.Drawing.Size(150, 25);
             this.txtNombreExterno.TabIndex = 0;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(32, 235);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(165, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Numero de participantes:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(61, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 17);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Numero de tarjeta:";
-            // 
             // Pedir_Cubiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.BackColor = System.Drawing.Color.Orange;
             this.ClientSize = new System.Drawing.Size(449, 432);
             this.Controls.Add(this.tabControl1);
             this.Name = "Pedir_Cubiculo";
