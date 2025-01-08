@@ -68,8 +68,8 @@ namespace CubiculoProyectoNuevo
         //Registra la entrada de los alumnos
         public void RegistrarAlumno(RegistroCubiculoAlumnos registro)
         {
-            const string query = "INSERT INTO Registros_Alumnos (numero_control, numero_cubiculo, hora_entrada, id_carrera, fecha_nacimiento, numero_personas, sexo, semestre, nombre_alumno, apellido_paterno, apellido_materno) " +
-                                 "VALUES (@numero_control, @numero_cubiculo, @hora_entrada, @id_carrera, @fecha_nacimiento, @numero_personas, @sexo, @semestre, @nombre_alumno, @apellido_paterno, @apellido_materno)";
+            const string query = "INSERT INTO Registros_Alumnos (numero_control, numero_cubiculo, hora_entrada, numero_personas) " +
+                                 "VALUES (@numero_control, @numero_cubiculo, @hora_entrada, @numero_personas)";
 
             using (SqlConnection conn = CreateConnection())
             {
@@ -81,14 +81,7 @@ namespace CubiculoProyectoNuevo
                     command.Parameters.Add(new SqlParameter("@numero_control", registro.numero_control));
                     command.Parameters.Add(new SqlParameter("@numero_cubiculo", registro.numero_cubiculo));
                     command.Parameters.Add(new SqlParameter("@hora_entrada", registro.hora_entrada));
-                    command.Parameters.Add(new SqlParameter("@fecha_nacimiento", registro.fecha_nacimiento)); // Agregar parámetro
                     command.Parameters.Add(new SqlParameter("@numero_personas", registro.numero_personas));
-                    command.Parameters.Add(new SqlParameter("@id_carrera", registro.id_carrera));
-                    command.Parameters.Add(new SqlParameter("@sexo", registro.sexo));
-                    command.Parameters.Add(new SqlParameter("@semestre", registro.semestre));
-                    command.Parameters.Add(new SqlParameter("@nombre_alumno", registro.nombre_alumno));
-                    command.Parameters.Add(new SqlParameter("@apellido_paterno", registro.apellido_paterno));
-                    command.Parameters.Add(new SqlParameter("@apellido_materno", registro.apellido_materno));
 
                     command.ExecuteNonQuery();
                 }
@@ -154,8 +147,8 @@ namespace CubiculoProyectoNuevo
                     // Registra la entrada del personal
         public void RegistrarPersonal(RegistroCubiculoPersonal registro)
         {
-            const string query = "INSERT INTO Registros_Personal (no_tarjeta, apellidos_personal, Nombre_personal, numero_cubiculo, hora_entrada, descripcion_area, numero_personas) " +
-                                 "VALUES (@no_tarjeta, @apellidos_personal, @nombre_personal, @numero_cubiculo, @hora_entrada, @descripcion_area, @numero_personas)";
+            const string query = "INSERT INTO Registros_Personal (no_tarjeta, numero_cubiculo, hora_entrada, numero_personas) " +
+                                 "VALUES (@no_tarjeta, @numero_cubiculo, @hora_entrada, @numero_personas)";
 
             using (SqlConnection conn = CreateConnection())
             {
@@ -165,11 +158,8 @@ namespace CubiculoProyectoNuevo
                 {
                     command.CommandText = query;
                     command.Parameters.Add(new SqlParameter("@no_tarjeta", registro.no_tarjeta));
-                    command.Parameters.Add(new SqlParameter("@apellidos_personal", registro.apellidos_personal));
-                    command.Parameters.Add(new SqlParameter("@nombre_personal", registro.nombre_personal));
                     command.Parameters.Add(new SqlParameter("@numero_cubiculo", registro.numero_cubiculo));
                     command.Parameters.Add(new SqlParameter("@hora_entrada", registro.hora_entrada));
-                    command.Parameters.Add(new SqlParameter("@descripcion_area", registro.descripcion_area));
                     command.Parameters.Add(new SqlParameter("@numero_personas", registro.numero_personas));
 
                     command.ExecuteNonQuery();
@@ -482,7 +472,16 @@ namespace CubiculoProyectoNuevo
             DataTable tabla = new DataTable();
             using (SqlConnection conexion = CreateConnection())
             {
-                string consulta = "SELECT * FROM Registros_Alumnos WHERE hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+                string consulta = @"
+                    SELECT ra.*, 
+                           a.nombre_alumno, a.apellido_paterno, a.apellido_materno, 
+                           a.semestre, a.id_carrera, a.fecha_nacimiento, a.sexo,
+                           c.nombre_carrera
+                    FROM Registros_Alumnos ra
+                    JOIN Alumnos a ON ra.numero_control = a.numero_control
+                    JOIN Carrera c ON a.id_carrera = c.id_carrera
+                    WHERE ra.hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
                     comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
@@ -500,7 +499,12 @@ namespace CubiculoProyectoNuevo
             DataTable tabla = new DataTable();
             using (SqlConnection conexion = CreateConnection())
             {
-                string consulta = "SELECT * FROM Registros_Personal WHERE hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+                string consulta = @"
+                    SELECT rp.*, pa.nombre_empleado, pa.apellidos_empleado, pa.descripcion_area
+                    FROM Registros_Personal rp
+                    JOIN Personal_activo pa ON rp.no_tarjeta = pa.no_tarjeta
+                    WHERE rp.hora_entrada BETWEEN @fechaInicio AND @fechaFin";
+
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
                     comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
@@ -606,5 +610,57 @@ namespace CubiculoProyectoNuevo
                 return builder.ToString();
             }
         }
+        public void InsertarAlumnosDesdeDataTable(DataTable dtAlumnos)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (DataRow row in dtAlumnos.Rows)
+                {
+                    // Crear el comando para insertar un registro
+                    SqlCommand command = new SqlCommand("INSERT INTO Alumnos (numero_control, nombre_alumno, apellido_paterno, apellido_materno, id_carrera, sexo, semestre, fecha_nacimiento, estatus_alumno, correo_electronico) VALUES (@numero_control, @nombre_alumno, @apellido_paterno, @apellido_materno, @id_carrera, @sexo, @semestre, @fecha_nacimiento, @estatus_alumno, @correo_electronico)", connection);
+
+                    // Asignar los parámetros (ajusta los nombres de columnas según tu base de datos)
+                    command.Parameters.AddWithValue("@numero_control", row["numero_control"]);
+                    command.Parameters.AddWithValue("@nombre_alumno", row["nombre_alumno"]);
+                    command.Parameters.AddWithValue("@apellido_paterno", row["apellido_paterno"]);
+                    command.Parameters.AddWithValue("@apellido_materno", row["apellido_materno"]);
+                    command.Parameters.AddWithValue("@id_carrera", row["id_carrera"]);
+                    command.Parameters.AddWithValue("@sexo", row["sexo"]);
+                    command.Parameters.AddWithValue("@semestre", row["semestre"]);
+                    command.Parameters.AddWithValue("@estatus_alumno", row["estatus_alumno"]);
+                    command.Parameters.AddWithValue("@correo_electronico", row["correo_electronico"]);
+                    command.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(row["fecha_nacimiento"].ToString()));
+
+                    // Ejecutar el comando
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public void InsertarPersonalDesdeDataTable(DataTable dtPersonal)
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                connection.Open();
+
+                foreach (DataRow row in dtPersonal.Rows)
+                {
+                    // Crear el comando para insertar un registro
+                    SqlCommand command = new SqlCommand("INSERT INTO Personal_activo (no_tarjeta, apellidos_empleado, nombre_empleado, descripcion_area) VALUES (@no_tarjeta, @apellidos_empleado, @nombre_empleado, @descripcion_area)", connection);
+
+                    // Asignar los parámetros (ajusta los nombres de columnas según tu base de datos)
+                    command.Parameters.AddWithValue("@no_tarjeta", row["no_tarjeta"]);
+                    command.Parameters.AddWithValue("@apellidos_empleado", row["apellidos_empleado"]);
+                    command.Parameters.AddWithValue("@nombre_empleado", row["nombre_empleado"]);
+                    command.Parameters.AddWithValue("@descripcion_area", row["descripcion_area"]);
+
+                    // Ejecutar el comando
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 }

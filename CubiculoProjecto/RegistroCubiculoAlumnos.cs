@@ -13,45 +13,6 @@ namespace CubiculoProyectoNuevo
             get;
             set;
         }
-
-        public string nombre_alumno
-        {
-            get;
-            set;
-        }
-
-        public string apellido_paterno
-        {
-            get;
-            set;
-        }
-
-        public string apellido_materno
-        {
-            get;
-            set;
-        }
-
-        public string id_carrera
-        {
-            get;
-            set;
-        }
-        public string sexo
-        {
-            get;
-            set;
-        }
-        public string semestre
-        {
-            get;
-            set;
-        }
-        public DateTime fecha_nacimiento
-        {
-            get;
-            set;
-        }
         public string numero_cubiculo
         {
             get;

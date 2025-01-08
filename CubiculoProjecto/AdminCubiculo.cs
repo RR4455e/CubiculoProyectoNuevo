@@ -308,5 +308,121 @@ namespace CubiculoProyectoNuevo
                 MessageBox.Show("Error al cambiar la contraseña: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnImportarAlumnos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Mostrar el diálogo para seleccionar el archivo Excel
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
+                openFileDialog.Title = "Seleccionar archivo Excel";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = openFileDialog.FileName;
+
+                    // Leer datos desde el archivo Excel
+                    DataTable dtAlumnos = LeerDatosDesdeExcel(rutaArchivo);
+
+                    if (dtAlumnos != null && dtAlumnos.Rows.Count > 0)
+                    {
+                        // Insertar datos en la base de datos
+                        conexionBD.InsertarAlumnosDesdeDataTable(dtAlumnos);
+
+                        MessageBox.Show("Datos importados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron datos para importar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al importar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private DataTable LeerDatosDesdeExcel(string rutaArchivo)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                using (XLWorkbook workbook = new XLWorkbook(rutaArchivo))
+                {
+                    // Suponiendo que los datos están en la primera hoja
+                    IXLWorksheet worksheet = workbook.Worksheet(1);
+
+                    bool primeraFila = true;
+                    foreach (IXLRow row in worksheet.RowsUsed())
+                    {
+                        if (primeraFila)
+                        {
+                            // Asumimos que la primera fila contiene los nombres de las columnas
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+                            primeraFila = false;
+                        }
+                        else
+                        {
+                            DataRow dataRow = dt.NewRow();
+                            int index = 0;
+                            foreach (IXLCell cell in row.Cells(1, dt.Columns.Count))
+                            {
+                                dataRow[index] = cell.Value.ToString();
+                                index++;
+                            }
+                            dt.Rows.Add(dataRow);
+                        }
+                    }
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al leer el archivo Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        private void btnImportarPersonal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Mostrar el diálogo para seleccionar el archivo Excel
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
+                openFileDialog.Title = "Seleccionar archivo Excel";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = openFileDialog.FileName;
+
+                    // Leer datos desde el archivo Excel
+                    DataTable dtPersonal = LeerDatosDesdeExcel(rutaArchivo);
+
+                    if (dtPersonal != null && dtPersonal.Rows.Count > 0)
+                    {
+                        // Insertar datos en la base de datos
+                        conexionBD.InsertarPersonalDesdeDataTable(dtPersonal);
+
+                        MessageBox.Show("Datos importados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron datos para importar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al importar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

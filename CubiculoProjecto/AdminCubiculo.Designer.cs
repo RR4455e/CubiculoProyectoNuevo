@@ -55,6 +55,11 @@
             this.txtUsuarioACambiar = new System.Windows.Forms.TextBox();
             this.txtContraseñaNuevoUsuario = new System.Windows.Forms.TextBox();
             this.txtNuevoUsuario = new System.Windows.Forms.TextBox();
+            this.btnImportarAlumnos = new System.Windows.Forms.Button();
+            this.btnImportarPersonal = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabReportes.SuspendLayout();
             this.tabAdminTablas.SuspendLayout();
@@ -153,6 +158,11 @@
             // 
             // tabAdminTablas
             // 
+            this.tabAdminTablas.Controls.Add(this.button3);
+            this.tabAdminTablas.Controls.Add(this.button2);
+            this.tabAdminTablas.Controls.Add(this.button1);
+            this.tabAdminTablas.Controls.Add(this.btnImportarPersonal);
+            this.tabAdminTablas.Controls.Add(this.btnImportarAlumnos);
             this.tabAdminTablas.Controls.Add(this.label1);
             this.tabAdminTablas.Controls.Add(this.btnReExternos);
             this.tabAdminTablas.Controls.Add(this.btnRePersonal);
@@ -184,39 +194,39 @@
             // btnReExternos
             // 
             this.btnReExternos.BackColor = System.Drawing.Color.Red;
-            this.btnReExternos.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReExternos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReExternos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnReExternos.Location = new System.Drawing.Point(56, 286);
+            this.btnReExternos.Location = new System.Drawing.Point(237, 72);
             this.btnReExternos.Name = "btnReExternos";
-            this.btnReExternos.Size = new System.Drawing.Size(250, 95);
+            this.btnReExternos.Size = new System.Drawing.Size(112, 95);
             this.btnReExternos.TabIndex = 2;
-            this.btnReExternos.Text = "Reiniciar Externos";
+            this.btnReExternos.Text = "Reiniciar Registros Externos";
             this.btnReExternos.UseVisualStyleBackColor = false;
             this.btnReExternos.Click += new System.EventHandler(this.btnReExternos_Click);
             // 
             // btnRePersonal
             // 
             this.btnRePersonal.BackColor = System.Drawing.Color.Red;
-            this.btnRePersonal.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRePersonal.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRePersonal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRePersonal.Location = new System.Drawing.Point(56, 185);
+            this.btnRePersonal.Location = new System.Drawing.Point(119, 72);
             this.btnRePersonal.Name = "btnRePersonal";
-            this.btnRePersonal.Size = new System.Drawing.Size(250, 95);
+            this.btnRePersonal.Size = new System.Drawing.Size(112, 95);
             this.btnRePersonal.TabIndex = 1;
-            this.btnRePersonal.Text = "Reiniciar Personal";
+            this.btnRePersonal.Text = "Reiniciar Registros Personal";
             this.btnRePersonal.UseVisualStyleBackColor = false;
             this.btnRePersonal.Click += new System.EventHandler(this.btnRePersonal_Click);
             // 
             // btnReAlumnos
             // 
             this.btnReAlumnos.BackColor = System.Drawing.Color.Red;
-            this.btnReAlumnos.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReAlumnos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReAlumnos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnReAlumnos.Location = new System.Drawing.Point(56, 84);
+            this.btnReAlumnos.Location = new System.Drawing.Point(1, 72);
             this.btnReAlumnos.Name = "btnReAlumnos";
-            this.btnReAlumnos.Size = new System.Drawing.Size(250, 95);
+            this.btnReAlumnos.Size = new System.Drawing.Size(112, 95);
             this.btnReAlumnos.TabIndex = 0;
-            this.btnReAlumnos.Text = "Reiniciar Alumnos";
+            this.btnReAlumnos.Text = "Reiniciar Registros Alumnos";
             this.btnReAlumnos.UseVisualStyleBackColor = false;
             this.btnReAlumnos.Click += new System.EventHandler(this.btnReAlumnos_Click);
             // 
@@ -354,12 +364,65 @@
             this.txtNuevoUsuario.Size = new System.Drawing.Size(148, 22);
             this.txtNuevoUsuario.TabIndex = 0;
             // 
+            // btnImportarAlumnos
+            // 
+            this.btnImportarAlumnos.Location = new System.Drawing.Point(3, 321);
+            this.btnImportarAlumnos.Name = "btnImportarAlumnos";
+            this.btnImportarAlumnos.Size = new System.Drawing.Size(112, 49);
+            this.btnImportarAlumnos.TabIndex = 4;
+            this.btnImportarAlumnos.Text = "Importar Alumnos";
+            this.btnImportarAlumnos.UseVisualStyleBackColor = true;
+            this.btnImportarAlumnos.Click += new System.EventHandler(this.btnImportarAlumnos_Click);
+            // 
+            // btnImportarPersonal
+            // 
+            this.btnImportarPersonal.Location = new System.Drawing.Point(121, 321);
+            this.btnImportarPersonal.Name = "btnImportarPersonal";
+            this.btnImportarPersonal.Size = new System.Drawing.Size(112, 49);
+            this.btnImportarPersonal.TabIndex = 5;
+            this.btnImportarPersonal.Text = "Importar Personal";
+            this.btnImportarPersonal.UseVisualStyleBackColor = true;
+            this.btnImportarPersonal.Click += new System.EventHandler(this.btnImportarPersonal_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(61, 173);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 95);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Reiniciar Datos Alumnos";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Location = new System.Drawing.Point(179, 173);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 95);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Reiniciar Datos Personal";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(237, 321);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 49);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Importar Personal";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // AdminCubiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.Orange;
+            this.BackColor = System.Drawing.Color.DarkBlue;
             this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
@@ -406,5 +469,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnImportarAlumnos;
+        private System.Windows.Forms.Button btnImportarPersonal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

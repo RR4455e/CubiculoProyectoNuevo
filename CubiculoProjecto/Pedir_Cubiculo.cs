@@ -126,10 +126,6 @@ namespace CubiculoProyectoNuevo
                 try
                 {
                     if (string.IsNullOrEmpty(txtNumControl.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblNombreAlumno.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblApellidoPatAlumno.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblApellidoMatAlumno.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblSexoAlumno.Text.Trim()) ||
                         cmbNumPersonasAlumno.SelectedItem == null)
                     {
                         MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -139,13 +135,6 @@ namespace CubiculoProyectoNuevo
                     RegistroCubiculoAlumnos registro = new RegistroCubiculoAlumnos
                     {
                         numero_control = txtNumControl.Text.Trim(),
-                        nombre_alumno = lblNombreAlumno.Text.Trim(),
-                        apellido_paterno = lblApellidoPatAlumno.Text.Trim(),
-                        apellido_materno = lblApellidoMatAlumno.Text.Trim(),
-                        sexo = lblSexoAlumno.Text.Trim(),
-                        semestre = lblSemestreAlumno.Text.Trim(),
-                        id_carrera = lblidCarreraAlumno.Text.Trim(),
-                        fecha_nacimiento = dtpFechaNaciAlumno.Value,
                         numero_cubiculo = numeroCubiculo.ToString(),
                         numero_personas = cmbNumPersonasAlumno.SelectedItem.ToString(),
                         hora_entrada = DateTime.Now
@@ -226,9 +215,6 @@ namespace CubiculoProyectoNuevo
                 try
                 {
                     if (string.IsNullOrEmpty(txtNoTarjeta.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblNombreDocente.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblApellidosDocente.Text.Trim()) ||
-                        string.IsNullOrEmpty(lblAreaDocente.Text.Trim()) ||
                         cmbNumPersonasDocente.SelectedItem == null)
                     {
                         //MessageBox.Show("Por favor, completa todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -238,9 +224,6 @@ namespace CubiculoProyectoNuevo
                     RegistroCubiculoPersonal registro = new RegistroCubiculoPersonal
                     {
                         no_tarjeta = txtNoTarjeta.Text.Trim(),
-                        nombre_personal = lblNombreDocente.Text.Trim(),
-                        apellidos_personal = lblApellidosDocente.Text.Trim(),
-                        descripcion_area = lblAreaDocente.Text.Trim(),
                         numero_cubiculo = numeroCubiculo.ToString(),
                         numero_personas = cmbNumPersonasDocente.SelectedItem.ToString(),
                         hora_entrada = DateTime.Now
@@ -261,6 +244,10 @@ namespace CubiculoProyectoNuevo
                 }
             }
         }
+
+        // =======================
+        // Código para pestaña Externo
+        // =======================
 
         private void btnRegistrarExterno_Click(object sender, EventArgs e)
         {
