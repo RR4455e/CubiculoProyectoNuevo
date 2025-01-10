@@ -38,6 +38,12 @@
             this.dtpFechaReporte = new System.Windows.Forms.DateTimePicker();
             this.cmbTipoReporte = new System.Windows.Forms.ComboBox();
             this.tabAdminTablas = new System.Windows.Forms.TabPage();
+            this.btnReDatosCarreras = new System.Windows.Forms.Button();
+            this.btnImportarCarreras = new System.Windows.Forms.Button();
+            this.btnReDatosPersonal = new System.Windows.Forms.Button();
+            this.btnReDatosAlumnos = new System.Windows.Forms.Button();
+            this.btnImportarPersonal = new System.Windows.Forms.Button();
+            this.btnImportarAlumnos = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReExternos = new System.Windows.Forms.Button();
             this.btnRePersonal = new System.Windows.Forms.Button();
@@ -55,11 +61,6 @@
             this.txtUsuarioACambiar = new System.Windows.Forms.TextBox();
             this.txtContraseñaNuevoUsuario = new System.Windows.Forms.TextBox();
             this.txtNuevoUsuario = new System.Windows.Forms.TextBox();
-            this.btnImportarAlumnos = new System.Windows.Forms.Button();
-            this.btnImportarPersonal = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabReportes.SuspendLayout();
             this.tabAdminTablas.SuspendLayout();
@@ -158,9 +159,10 @@
             // 
             // tabAdminTablas
             // 
-            this.tabAdminTablas.Controls.Add(this.button3);
-            this.tabAdminTablas.Controls.Add(this.button2);
-            this.tabAdminTablas.Controls.Add(this.button1);
+            this.tabAdminTablas.Controls.Add(this.btnReDatosCarreras);
+            this.tabAdminTablas.Controls.Add(this.btnImportarCarreras);
+            this.tabAdminTablas.Controls.Add(this.btnReDatosPersonal);
+            this.tabAdminTablas.Controls.Add(this.btnReDatosAlumnos);
             this.tabAdminTablas.Controls.Add(this.btnImportarPersonal);
             this.tabAdminTablas.Controls.Add(this.btnImportarAlumnos);
             this.tabAdminTablas.Controls.Add(this.label1);
@@ -175,6 +177,75 @@
             this.tabAdminTablas.TabIndex = 1;
             this.tabAdminTablas.Text = "Administracion de tablas";
             this.tabAdminTablas.UseVisualStyleBackColor = true;
+            // 
+            // btnReDatosCarreras
+            // 
+            this.btnReDatosCarreras.BackColor = System.Drawing.Color.Red;
+            this.btnReDatosCarreras.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReDatosCarreras.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnReDatosCarreras.Location = new System.Drawing.Point(237, 173);
+            this.btnReDatosCarreras.Name = "btnReDatosCarreras";
+            this.btnReDatosCarreras.Size = new System.Drawing.Size(112, 95);
+            this.btnReDatosCarreras.TabIndex = 9;
+            this.btnReDatosCarreras.Text = "Reiniciar Datos Carreras";
+            this.btnReDatosCarreras.UseVisualStyleBackColor = false;
+            this.btnReDatosCarreras.Click += new System.EventHandler(this.btnReDatosCarreras_Click);
+            // 
+            // btnImportarCarreras
+            // 
+            this.btnImportarCarreras.Location = new System.Drawing.Point(237, 321);
+            this.btnImportarCarreras.Name = "btnImportarCarreras";
+            this.btnImportarCarreras.Size = new System.Drawing.Size(112, 49);
+            this.btnImportarCarreras.TabIndex = 8;
+            this.btnImportarCarreras.Text = "Importar Carreras";
+            this.btnImportarCarreras.UseVisualStyleBackColor = true;
+            this.btnImportarCarreras.Click += new System.EventHandler(this.btnImportarCarreras_Click);
+            // 
+            // btnReDatosPersonal
+            // 
+            this.btnReDatosPersonal.BackColor = System.Drawing.Color.Red;
+            this.btnReDatosPersonal.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReDatosPersonal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnReDatosPersonal.Location = new System.Drawing.Point(121, 173);
+            this.btnReDatosPersonal.Name = "btnReDatosPersonal";
+            this.btnReDatosPersonal.Size = new System.Drawing.Size(112, 95);
+            this.btnReDatosPersonal.TabIndex = 7;
+            this.btnReDatosPersonal.Text = "Reiniciar Datos Personal";
+            this.btnReDatosPersonal.UseVisualStyleBackColor = false;
+            this.btnReDatosPersonal.Click += new System.EventHandler(this.btnReDatosPersonal_Click);
+            // 
+            // btnReDatosAlumnos
+            // 
+            this.btnReDatosAlumnos.BackColor = System.Drawing.Color.Red;
+            this.btnReDatosAlumnos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReDatosAlumnos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnReDatosAlumnos.Location = new System.Drawing.Point(3, 173);
+            this.btnReDatosAlumnos.Name = "btnReDatosAlumnos";
+            this.btnReDatosAlumnos.Size = new System.Drawing.Size(112, 95);
+            this.btnReDatosAlumnos.TabIndex = 6;
+            this.btnReDatosAlumnos.Text = "Reiniciar Datos Alumnos";
+            this.btnReDatosAlumnos.UseVisualStyleBackColor = false;
+            this.btnReDatosAlumnos.Click += new System.EventHandler(this.btnReDatosAlumnos_Click);
+            // 
+            // btnImportarPersonal
+            // 
+            this.btnImportarPersonal.Location = new System.Drawing.Point(121, 321);
+            this.btnImportarPersonal.Name = "btnImportarPersonal";
+            this.btnImportarPersonal.Size = new System.Drawing.Size(112, 49);
+            this.btnImportarPersonal.TabIndex = 5;
+            this.btnImportarPersonal.Text = "Importar Personal";
+            this.btnImportarPersonal.UseVisualStyleBackColor = true;
+            this.btnImportarPersonal.Click += new System.EventHandler(this.btnImportarPersonal_Click);
+            // 
+            // btnImportarAlumnos
+            // 
+            this.btnImportarAlumnos.Location = new System.Drawing.Point(3, 321);
+            this.btnImportarAlumnos.Name = "btnImportarAlumnos";
+            this.btnImportarAlumnos.Size = new System.Drawing.Size(112, 49);
+            this.btnImportarAlumnos.TabIndex = 4;
+            this.btnImportarAlumnos.Text = "Importar Alumnos";
+            this.btnImportarAlumnos.UseVisualStyleBackColor = true;
+            this.btnImportarAlumnos.Click += new System.EventHandler(this.btnImportarAlumnos_Click);
             // 
             // label1
             // 
@@ -364,59 +435,6 @@
             this.txtNuevoUsuario.Size = new System.Drawing.Size(148, 22);
             this.txtNuevoUsuario.TabIndex = 0;
             // 
-            // btnImportarAlumnos
-            // 
-            this.btnImportarAlumnos.Location = new System.Drawing.Point(3, 321);
-            this.btnImportarAlumnos.Name = "btnImportarAlumnos";
-            this.btnImportarAlumnos.Size = new System.Drawing.Size(112, 49);
-            this.btnImportarAlumnos.TabIndex = 4;
-            this.btnImportarAlumnos.Text = "Importar Alumnos";
-            this.btnImportarAlumnos.UseVisualStyleBackColor = true;
-            this.btnImportarAlumnos.Click += new System.EventHandler(this.btnImportarAlumnos_Click);
-            // 
-            // btnImportarPersonal
-            // 
-            this.btnImportarPersonal.Location = new System.Drawing.Point(121, 321);
-            this.btnImportarPersonal.Name = "btnImportarPersonal";
-            this.btnImportarPersonal.Size = new System.Drawing.Size(112, 49);
-            this.btnImportarPersonal.TabIndex = 5;
-            this.btnImportarPersonal.Text = "Importar Personal";
-            this.btnImportarPersonal.UseVisualStyleBackColor = true;
-            this.btnImportarPersonal.Click += new System.EventHandler(this.btnImportarPersonal_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(61, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 95);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Reiniciar Datos Alumnos";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(179, 173);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 95);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Reiniciar Datos Personal";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(237, 321);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 49);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Importar Personal";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // AdminCubiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -471,8 +489,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnImportarAlumnos;
         private System.Windows.Forms.Button btnImportarPersonal;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnReDatosAlumnos;
+        private System.Windows.Forms.Button btnReDatosPersonal;
+        private System.Windows.Forms.Button btnImportarCarreras;
+        private System.Windows.Forms.Button btnReDatosCarreras;
     }
 }

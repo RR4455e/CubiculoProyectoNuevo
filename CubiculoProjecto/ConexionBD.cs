@@ -660,6 +660,24 @@ namespace CubiculoProyectoNuevo
                 }
             }
         }
+        public void InsertarCarrerasDesdeDataTable(DataTable dtCarreras)
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                connection.Open();
+
+                foreach (DataRow row in dtCarreras.Rows)
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO Carreras (id_carrera, nombre_carrera, nombre_reducido) VALUES (@id_carrera, @nombre_carrera, @nombre_reducido)", connection);
+
+                    command.Parameters.AddWithValue("@id_carrera", row["id_carrera"]);
+                    command.Parameters.AddWithValue("@nombre_carrera", row["nombre_carrera"]);
+                    command.Parameters.AddWithValue("@nombre_reducido", row["nombre_reducido"]);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
 
     }

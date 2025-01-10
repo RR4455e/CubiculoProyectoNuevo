@@ -24,7 +24,7 @@ namespace CubiculoProyectoNuevo
             cmbTipoReporte.Items.Add("Día");
             cmbTipoReporte.Items.Add("Semana");
             cmbTipoReporte.Items.Add("Mes");
-            cmbTipoReporte.Items.Add("Todo"); 
+            cmbTipoReporte.Items.Add("Todo");
             cmbTipoReporte.SelectedIndex = 0; // Selecciona "Día" por defecto
 
             // Inicializa el ComboBox con las opciones de tablas a exportar
@@ -244,6 +244,101 @@ namespace CubiculoProyectoNuevo
                 }
             }
         }
+        private void btnReDatosAlumnos_Click(object sender, EventArgs e)
+        {
+            // Mostrar MessageBox de advertencia
+            var result = MessageBox.Show("¿Está seguro de que desea reiniciar la tabla de datos de alumnos? Esta acción no se puede deshacer.",
+                                         "Advertencia",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Warning);
+
+            // Si el usuario confirma, ejecutar el query SQL
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ConexionBD conexion = new ConexionBD();
+                    using (var conn = conexion.CreateConnection())
+                    {
+                        conn.Open();
+                        string query = "DELETE FROM Alumnos; DBCC CHECKIDENT ('Alumnos', RESEED, 0);";
+                        using (var command = new SqlCommand(query, conn))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("La tabla de datos de alumnos se ha reiniciado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al reiniciar los registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnReDatosPersonal_Click(object sender, EventArgs e)
+        {
+            // Mostrar MessageBox de advertencia
+            var result = MessageBox.Show("¿Está seguro de que desea reiniciar la tabla de datos del personal? Esta acción no se puede deshacer.",
+                                         "Advertencia",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Warning);
+
+            // Si el usuario confirma, ejecutar el query SQL
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ConexionBD conexion = new ConexionBD();
+                    using (var conn = conexion.CreateConnection())
+                    {
+                        conn.Open();
+                        string query = "DELETE FROM Personal_activo; DBCC CHECKIDENT ('Personal_activo', RESEED, 0);";
+                        using (var command = new SqlCommand(query, conn))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("La tabla de datos del personal ha sido reiniciada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al reiniciar los registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnReDatosCarreras_Click(object sender, EventArgs e)
+        {
+            // Mostrar MessageBox de advertencia
+            var result = MessageBox.Show("¿Está seguro de que desea reiniciar la tabla de datos de carreras? Esta acción no se puede deshacer.",
+                                         "Advertencia",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Warning);
+
+            // Si el usuario confirma, ejecutar el query SQL
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ConexionBD conexion = new ConexionBD();
+                    using (var conn = conexion.CreateConnection())
+                    {
+                        conn.Open();
+                        string query = "DELETE FROM Carreras; DBCC CHECKIDENT ('Carreras', RESEED, 0);";
+                        using (var command = new SqlCommand(query, conn))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("La tabla de datos de carreras ha sido reiniciada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al reiniciar los registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         private void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
@@ -393,7 +488,6 @@ namespace CubiculoProyectoNuevo
         {
             try
             {
-                // Mostrar el diálogo para seleccionar el archivo Excel
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
                 openFileDialog.Title = "Seleccionar archivo Excel";
@@ -402,12 +496,10 @@ namespace CubiculoProyectoNuevo
                 {
                     string rutaArchivo = openFileDialog.FileName;
 
-                    // Leer datos desde el archivo Excel
                     DataTable dtPersonal = LeerDatosDesdeExcel(rutaArchivo);
 
                     if (dtPersonal != null && dtPersonal.Rows.Count > 0)
                     {
-                        // Insertar datos en la base de datos
                         conexionBD.InsertarPersonalDesdeDataTable(dtPersonal);
 
                         MessageBox.Show("Datos importados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -423,6 +515,43 @@ namespace CubiculoProyectoNuevo
                 MessageBox.Show("Error al importar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnImportarCarreras_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Archivos de Excel|*.xlsx;*.xls",
+                    Title = "Seleccione el archivo Excel"
+                };
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = openFileDialog.FileName;
+
+                    DataTable dtCarreras = LeerDatosDesdeExcel(rutaArchivo);
+
+                    if (dtCarreras != null && dtCarreras.Rows.Count > 0)
+                    {
+                        ConexionBD conexionBD = new ConexionBD();
+                        conexionBD.InsertarCarrerasDesdeDataTable(dtCarreras);
+
+                        MessageBox.Show("Datos importados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron datos para importar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al importar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }
