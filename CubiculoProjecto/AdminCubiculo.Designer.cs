@@ -137,11 +137,11 @@
             // 
             // btnExportarReporte
             // 
-            this.btnExportarReporte.Location = new System.Drawing.Point(94, 145);
+            this.btnExportarReporte.Location = new System.Drawing.Point(94, 223);
             this.btnExportarReporte.Name = "btnExportarReporte";
             this.btnExportarReporte.Size = new System.Drawing.Size(161, 59);
             this.btnExportarReporte.TabIndex = 8;
-            this.btnExportarReporte.Text = "Generar Reporte";
+            this.btnExportarReporte.Text = "Generar Excel";
             this.btnExportarReporte.UseVisualStyleBackColor = true;
             // 
             // dtpFechaReporte
@@ -439,11 +439,11 @@
             // 
             // btnGenerarEstadisticas
             // 
-            this.btnGenerarEstadisticas.Location = new System.Drawing.Point(94, 227);
+            this.btnGenerarEstadisticas.Location = new System.Drawing.Point(94, 158);
             this.btnGenerarEstadisticas.Name = "btnGenerarEstadisticas";
             this.btnGenerarEstadisticas.Size = new System.Drawing.Size(161, 59);
             this.btnGenerarEstadisticas.TabIndex = 13;
-            this.btnGenerarEstadisticas.Text = "Generar Estadisticas";
+            this.btnGenerarEstadisticas.Text = "Generar Reporte";
             this.btnGenerarEstadisticas.UseVisualStyleBackColor = true;
             this.btnGenerarEstadisticas.Click += new System.EventHandler(this.btnGenerarEstadisticas_Click);
             // 
