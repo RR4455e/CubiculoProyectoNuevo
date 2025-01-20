@@ -552,6 +552,130 @@ namespace CubiculoProyectoNuevo
             }
         }
 
+        private void btnGenerarEstadisticas_Click(object sender, EventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime fechaSeleccionada = dtpFechaReporte.Value.Date;
 
+            // Determinar el rango de fechas según el tipo de reporte
+            DateTime fechaInicio;
+            DateTime fechaFin;
+
+            switch (cmbTipoReporte.SelectedItem.ToString())
+            {
+                case "Día":
+                    fechaInicio = fechaSeleccionada;
+                    fechaFin = fechaSeleccionada.AddDays(1).AddSeconds(-1);
+                    break;
+                case "Semana":
+                    int diaSemana = (int)fechaSeleccionada.DayOfWeek;
+                    fechaInicio = fechaSeleccionada.AddDays(-diaSemana + 1); // Asumiendo que la semana empieza el lunes
+                    fechaFin = fechaInicio.AddDays(7).AddSeconds(-1);
+                    break;
+                case "Mes":
+                    fechaInicio = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, 1);
+                    fechaFin = fechaInicio.AddMonths(1).AddSeconds(-1);
+                    break;
+                case "Todo":
+                    fechaInicio = new DateTime(1753, 1, 1); // Fecha mínima válida para SQL Server
+                    fechaFin = new DateTime(9999, 12, 31, 23, 59, 59); // Fecha máxima válida para SQL Server
+                    break;
+                default:
+                    MessageBox.Show("Selecciona un tipo de reporte válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
+            // Llamar al método para generar las estadísticas
+            GenerarEstadisticas(fechaInicio, fechaFin);
+        }
+
+        
+        private void GenerarEstadisticas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                int totalPrestamos = 0;
+                int prestamosAlumnos = 0;
+                int prestamosPersonal = 0;
+                int prestamosExternos = 0;
+                Dictionary<string, int> prestamosPorCarrera = new Dictionary<string, int>();
+
+                // Obtener conexiones a la base de datos
+                ConexionBD conexion = new ConexionBD();
+
+                // Obtener registros de alumnos
+                DataTable dtAlumnos = conexion.ObtenerRegistrosAlumnosPorFecha(fechaInicio, fechaFin);
+                prestamosAlumnos = dtAlumnos.Rows.Count;
+                totalPrestamos += prestamosAlumnos;
+
+                // Obtener registros de personal
+                DataTable dtPersonal = conexion.ObtenerRegistrosPersonalPorFecha(fechaInicio, fechaFin);
+                prestamosPersonal = dtPersonal.Rows.Count;
+                totalPrestamos += prestamosPersonal;
+
+                // Obtener registros de externos
+                DataTable dtExternos = conexion.ObtenerRegistrosExternosPorFecha(fechaInicio, fechaFin);
+                prestamosExternos = dtExternos.Rows.Count;
+                totalPrestamos += prestamosExternos;
+
+                // Obtener préstamos por carrera de alumnos
+                if (prestamosAlumnos > 0)
+                {
+                    foreach (DataRow row in dtAlumnos.Rows)
+                    {
+                        string numeroControl = row["numero_control"].ToString();
+                        Alumno alumno = conexion.ObtenerAlumno(numeroControl);
+                        if (alumno != null)
+                        {
+                            string carrera = alumno.nombre_carrera;
+                            if (prestamosPorCarrera.ContainsKey(carrera))
+                            {
+                                prestamosPorCarrera[carrera]++;
+                            }
+                            else
+                            {
+                                prestamosPorCarrera[carrera] = 1;
+                            }
+                        }
+                    }
+                }
+
+                // Generar el texto del informe
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Reporte de Estadísticas de Préstamos de Cubículos");
+                sb.AppendLine($"Período: {fechaInicio.ToShortDateString()} - {fechaFin.ToShortDateString()}");
+                sb.AppendLine();
+                sb.AppendLine("Estadísticas Generales:");
+                sb.AppendLine($"Total de Préstamos: {totalPrestamos}");
+                sb.AppendLine($"Préstamos de Alumnos: {prestamosAlumnos}");
+                sb.AppendLine($"Préstamos de Docentes: {prestamosPersonal}");
+                sb.AppendLine($"Préstamos de Externos: {prestamosExternos}");
+                sb.AppendLine();
+
+                if (prestamosPorCarrera.Count > 0)
+                {
+                    sb.AppendLine("Préstamos por Carrera:");
+                    foreach (var carrera in prestamosPorCarrera)
+                    {
+                        sb.AppendLine($"{carrera.Key}: {carrera.Value}");
+                    }
+                }
+
+                // Guardar el texto en un archivo
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Archivo de Texto (*.txt)|*.txt";
+                saveFileDialog.FileName = "Estadisticas_Cubiculos.txt";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(saveFileDialog.FileName, sb.ToString());
+                    MessageBox.Show("Estadísticas generadas exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar las estadísticas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 using System.Collections;
 using System.Data;
 using System.Configuration;
-using DocumentFormat.OpenXml.Math;
 using System.Security.Cryptography;
 
 namespace CubiculoProyectoNuevo
